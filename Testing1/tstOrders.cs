@@ -77,7 +77,7 @@ namespace Testing1
         public void SubTotalPropertyOK()
         {
             clsOrder AnOrder = new clsOrder();
-            decimal TestData = 789.99;
+            decimal TestData = 789.99M;
             AnOrder.SubTotal = TestData;
             Assert.AreEqual(AnOrder.SubTotal, TestData);
         }
