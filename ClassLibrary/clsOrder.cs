@@ -10,6 +10,6 @@ namespace ClassLibrary
         public string ShippingAddress { get; set; }
         public string OrderStatus { get; set; }
         public string DeliveryInstructions { get; set; }
-        public float SubTotal { get; set; }
+        public Decimal SubTotal { get; set; }
     }
 }
