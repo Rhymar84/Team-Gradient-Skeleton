@@ -14,5 +14,22 @@ namespace Testing2
 
             Assert.IsNotNull(anStock);
         }
-    }
+
+        [TestMethod]
+        public void ActivePropertyOK()
+        {
+            clsStock anStock = new clsStock();
+            Boolean TestData = true;
+            anStock.Active = TestData;
+            Assert.AreEqual(anStock.Active, TestData);
+        }
+
+        [TestMethod]
+        public void DateAddedPropertyOK()
+        {
+            clsStock anStock = new clsStock();
+            DateTime TestData = DateTime.Now.Date;
+            anStock.DateAdded = TestData;
+            Assert.AreEqual(anStock.DateAdded, TestData);
+        }
 }
