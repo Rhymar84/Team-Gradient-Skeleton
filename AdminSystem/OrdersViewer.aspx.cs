@@ -21,6 +21,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("<b>Order Status: </b>" + AnOrder.OrderStatus + "<br>");
         Response.Write("<b>Delivery Instructions: </b>" + AnOrder.DeliveryInstructions + "<br>");
         Response.Write("<b>Express Shipping: </b>" + AnOrder.ExpressShipping + "<br>");
-        Response.Write("<b>Subtotal: </b>£" + AnOrder.SubTotal + "<br>");
+        Response.Write("<b>Subtotal: </b>£" + AnOrder.Subtotal + "<br>");
     }
 }

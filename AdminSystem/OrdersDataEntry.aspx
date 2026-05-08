@@ -45,7 +45,7 @@
             <asp:TextBox ID="txtShippingAddress" runat="server" style="z-index: 1; left: 163px; top: 111px; position: absolute" TabIndex="3"></asp:TextBox>
         </p>
         <asp:TextBox ID="txtOrderStatus" runat="server" style="z-index: 1; left: 163px; top: 147px; position: absolute" TabIndex="4"></asp:TextBox>
-        <asp:TextBox ID="txtSubTotal" runat="server" style="z-index: 1; left: 163px; top: 261px; position: absolute" TabIndex="7"></asp:TextBox>
+        <asp:TextBox ID="txtSubtotal" runat="server" style="z-index: 1; left: 163px; top: 261px; position: absolute" TabIndex="7"></asp:TextBox>
     </form>
 </body>
 </html>
