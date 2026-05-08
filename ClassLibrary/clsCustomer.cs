@@ -4,12 +4,12 @@ namespace ClassLibrary
 {
     public class clsCustomer
     {
-        public bool IsVerified { get; set; }
-        public DateTime DateRegistered { get; set; }
-        public string Address { get; set; }
-        public string PhoneNo { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
+        public bool CustomerIsVerified { get; set; }
+        public DateTime CustomerDateRegistered { get; set; }
+        public string CustomerAddress { get; set; }
+        public string CustomerPhoneNo { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerName { get; set; }
+        public int CustomerID { get; set; }
     }
 }
