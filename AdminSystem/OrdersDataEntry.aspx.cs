@@ -24,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AnOrder.OrderStatus = "ordered";
         AnOrder.DeliveryInstructions = txtDeliveryInstructions.Text;
         AnOrder.ExpressShipping = chkExpressShipping.Checked;
-        AnOrder.SubTotal = Convert.ToDecimal(txtSubTotal.Text);
+        AnOrder.Subtotal = Convert.ToDecimal(txtSubtotal.Text);
         //store the order in session object
         Session["AnOrder"] = AnOrder;
         //navigate to view page

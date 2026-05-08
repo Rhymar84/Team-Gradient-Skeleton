@@ -5,7 +5,7 @@ using System;
 namespace Testing1
 {
     [TestClass]
-    public class tstOrders
+    public class InstanceTests
     {
         [TestMethod]
         public void InstanceOK()
@@ -74,12 +74,154 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void SubTotalPropertyOK()
+        public void SubtotalPropertyOK()
         {
             clsOrder AnOrder = new clsOrder();
             decimal TestData = 789.99M;
-            AnOrder.SubTotal = TestData;
-            Assert.AreEqual(AnOrder.SubTotal, TestData);
+            AnOrder.Subtotal = TestData;
+            Assert.AreEqual(AnOrder.Subtotal, TestData);
         }
     }
+
+    [TestClass]
+    public class ClassTests
+    {
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            //create bool to store result of validation
+            Boolean Found = false;
+            //create some test data
+            Int32 OrderNo = 7;
+            //invoke method
+            Found = AnOrder.Find(OrderNo);
+            //check if result exists
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestOrderNoFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            //create bool to record if data is good
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+            //check the order no.
+            if (AnOrder.OrderNo == 7) { 
+                OK = true;
+            }
+            //test result is correct
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestDateOrderedFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.DateOrdered == Convert.ToDateTime("02/04/2026")) { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestShippingAddressFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.ShippingAddress == "139 Green Lane, Leicester, Leicestershire, L43 3ZT") { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestOrderStatusFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.OrderStatus == "delivered") { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestDeliveryInstructionsFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.DeliveryInstructions == "<none given>") { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestExpressShippingFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.ExpressShipping == true) { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void TestSubtotalFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = false;
+
+            Int32 OrderNo = 7;
+            Found = AnOrder.Find(OrderNo);
+
+            if (AnOrder.Subtotal == 1399.99m) { 
+                OK = true;
+            }
+            Assert.IsTrue(OK);
+
+        }
+    }
+
+    
 }
