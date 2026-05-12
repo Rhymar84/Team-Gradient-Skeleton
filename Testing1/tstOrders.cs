@@ -112,7 +112,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
             //check the order no.
-            if (AnOrder.OrderNo == 7) { 
+            if (AnOrder.OrderNo == 7)
+            {
                 OK = true;
             }
             //test result is correct
@@ -130,7 +131,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.DateOrdered == Convert.ToDateTime("02/04/2026")) { 
+            if (AnOrder.DateOrdered == Convert.ToDateTime("02/04/2026"))
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
@@ -147,7 +149,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.ShippingAddress == "139 Green Lane, Leicester, Leicestershire, L43 3ZT") { 
+            if (AnOrder.ShippingAddress == "139 Green Lane, Leicester, Leicestershire, L43 3ZT")
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
@@ -164,7 +167,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.OrderStatus == "delivered") { 
+            if (AnOrder.OrderStatus == "delivered")
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
@@ -181,7 +185,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.DeliveryInstructions == "<none given>") { 
+            if (AnOrder.DeliveryInstructions == "<none given>")
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
@@ -198,7 +203,8 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.ExpressShipping == true) { 
+            if (AnOrder.ExpressShipping == true)
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
@@ -215,10 +221,300 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.Subtotal == 1399.99m) { 
+            if (AnOrder.Subtotal == 1399.99m)
+            {
                 OK = true;
             }
             Assert.IsTrue(OK);
+
+        }
+
+    }
+
+    [TestClass]
+    public class ValidationTests
+    {
+
+        //good test data
+        String DateOrdered = DateTime.Now.ToShortDateString();
+        String ShippingAddress = "15 Left Rd";
+        String OrderStatus = "delivered";
+        String DeliveryInstructions = "<none given>";
+        String Subtotal = "399.99";
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsOrder AnOrder = new clsOrder();
+            //string to store error
+            String Error;
+
+            //invoke method
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            //test
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ShippingAddressMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String ShippingAddress = ""; //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ShippingAddressMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String ShippingAddress = "a"; //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ShippingAddressMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String ShippingAddress = "".PadRight(75, 'a'); //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void ShippingAddressMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String ShippingAddress = "".PadRight(76, 'a'); //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateOrderedMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            DateTime TestDate = DateTime.Now.Date.AddDays(-1); //date yesterday, should fail
+            String DateOrdered = TestDate.ToString();
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateOrderedMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            DateTime TestDate = DateTime.Now.Date; //date yesterday, should fail
+            String DateOrdered = TestDate.ToString();
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateOrderedMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            DateTime TestDate = DateTime.Now.Date.AddDays(1); //date yesterday, should fail
+            String DateOrdered = TestDate.ToString();
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateOrderedInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String DateOrdered = "this is not a date"; //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void OrderStatusInvalidOption()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String OrderStatus = "".PadRight(7, 'a'); //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void OrderStatusValidOption()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String OrderStatus = "delivered"; //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DeliveryInstructionsMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String DeliveryInstructions = ""; //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DeliveryInstructionsMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String DeliveryInstructions = "a"; //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DeliveryInstructionsMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String DeliveryInstructions = "".PadRight(50, 'a'); //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DeliveryInstructionsMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String DeliveryInstructions = "".PadRight(51, 'a'); //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "-1"; //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "0"; //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMaxLength()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "".PadRight(12, '9'); //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMaxLengthPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "".PadRight(13, '9'); //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMaxDecimalPlaces()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "399.99"; //should pass
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void SubtotalMaxDecimalPlacesPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error;
+            //test data
+            String Subtotal = "399.995"; //should fail
+
+            Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
+            Assert.AreNotEqual(Error, "");
 
         }
     }
