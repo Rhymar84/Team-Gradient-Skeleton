@@ -131,6 +131,11 @@ namespace ClassLibrary
             //return that everything worked OK
             return true;
         }
+
+        public string Valid(string customerName, string customerEmail, string customerPhoneNo, string customerAddress, string customerDateRegistered)
+        {
+            return "";
+        }
     }
 }
 

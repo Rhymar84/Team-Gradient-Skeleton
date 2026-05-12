@@ -7,6 +7,14 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
+       //good test data
+       //create some test data to pass to the method
+        string CustomerName = "Drake Lamar";
+        string CustomerEmail = "drakelamar@gmail.com";
+        string CustomerPhoneNo = "01234567890";
+        string CustomerAddress = "1 High Street, Anytown, AT1 1AA";
+        string CustomerDateRegistered = DateTime.Now.ToShortDateString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -263,6 +271,17 @@ namespace Testing3
             }
 
         }
-      
+        [TestMethod]
+        public void ValidateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
     }
 }
