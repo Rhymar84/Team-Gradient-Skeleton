@@ -22,9 +22,9 @@ namespace Testing4
             //create some test data to assign to the property
             Boolean TestData = true;
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffClockIn = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffClockIn, TestData);
 
         }
         [TestMethod]
@@ -33,11 +33,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            String TestData = "64 Zoo Lane";
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffAddress = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffAddress, TestData);
 
         }
         [TestMethod]
@@ -46,11 +46,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffDateofHire = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffDateofHire, TestData);
 
         }
         [TestMethod]
@@ -59,11 +59,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            string TestData = "07969454221";
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffPhoneNo = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffPhoneNo, TestData);
 
         }
         [TestMethod]
@@ -72,11 +72,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            String TestData = "Tyson Granger";
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffName = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffName, TestData);
 
         }
         [TestMethod]
@@ -85,11 +85,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            string TestData = "Staff Admin";
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffRole = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffRole, TestData);
 
         }
         [TestMethod]
@@ -98,11 +98,11 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            int TestData = 2893410;
             //assign the data to the property
-            aStaff.Active = TestData;
+            aStaff.StaffID = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.Active, TestData);
+            Assert.AreEqual(aStaff.StaffID, TestData);
 
         }
     }
