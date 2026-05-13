@@ -125,13 +125,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer name
-            if (ACustomer.CustomerID != 1)
+            if (ACustomer.CustomerID != 10)
             {
                 OK = false;
             }
@@ -148,13 +148,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer name
-            if (ACustomer.CustomerName != "Drake Lamar")
+            if (ACustomer.CustomerName != "Lee Tom")
             {
                 OK = false;
             }
@@ -172,13 +172,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer email
-            if (ACustomer.CustomerEmail != "drakelamar@gmail.com")
+            if (ACustomer.CustomerEmail != "lee@gmail.com")
             {
                 OK = false;
             }
@@ -194,13 +194,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer phone number
-            if (ACustomer.CustomerPhoneNo != "01234567890")
+            if (ACustomer.CustomerPhoneNo != "07861728291")
             {
                 OK = false;
             }
@@ -216,13 +216,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer address
-            if (ACustomer.CustomerAddress != "1 High Street, Anytown, AT1 1AA")
+            if (ACustomer.CustomerAddress != "23 Licon Rd, Leicester")
             {
                 OK = false;
             }
@@ -238,13 +238,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer date registered
-            if (ACustomer.CustomerDateRegistered != Convert.ToDateTime("01/01/2020"))
+            if (ACustomer.CustomerDateRegistered != Convert.ToDateTime("21/04/2026"))
             {
                 OK = false;
             }
@@ -259,7 +259,7 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct

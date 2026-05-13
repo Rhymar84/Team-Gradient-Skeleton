@@ -120,16 +120,31 @@ namespace ClassLibrary
 
         public bool Find(int customerID)
         {
-            //set the private data member to the test data value
-            mCustomerID = 1;
-            mCustomerName = "Drake Lamar";
-            mCustomerEmail = "drakelamar@gmail.com";
-            mCustomerPhoneNo = "01234567890";
-            mCustomerAddress = "1 Test Street, Test Town, Test Country";
-            mCustomerDateRegistered = Convert.ToDateTime("2020-01-01");
-            mCustomerIsVerified = true;
-            //return that everything worked OK
-            return true;
+            //create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the Customer ID to search for
+            DB.AddParameter("@CustomerID", customerID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            //if one record is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+                mCustomerPhoneNo = Convert.ToString(DB.DataTable.Rows[0]["CustomerPhoneNo"]);
+                mCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+                mCustomerDateRegistered = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDateRegistered"]);
+                mCustomerIsVerified = Convert.ToBoolean(DB.DataTable.Rows[0]["CustomerIsVerified"]);
+                //return that everything worked OK
+                return true;
+            }
+            else
+            {
+                //return that there was a problem
+                return false;
+            }
         }
 
         public string Valid(string customerName, string customerEmail, string customerPhoneNo, string customerAddress, string customerDateRegistered)
