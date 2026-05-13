@@ -7,6 +7,14 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
+       //good test data
+       //create some test data to pass to the method
+        string CustomerName = "Drake Lamar";
+        string CustomerEmail = "drakelamar@gmail.com";
+        string CustomerPhoneNo = "01234567890";
+        string CustomerAddress = "1 High Street, Anytown, AT1 1AA";
+        string CustomerDateRegistered = DateTime.Now.ToShortDateString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -117,13 +125,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer name
-            if (ACustomer.CustomerID != 1)
+            if (ACustomer.CustomerID != 10)
             {
                 OK = false;
             }
@@ -140,13 +148,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer name
-            if (ACustomer.CustomerName != "Drake Lamar")
+            if (ACustomer.CustomerName != "Lee Tom")
             {
                 OK = false;
             }
@@ -164,13 +172,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer email
-            if (ACustomer.CustomerEmail != "drakelamar@gmail.com")
+            if (ACustomer.CustomerEmail != "lee@gmail.com")
             {
                 OK = false;
             }
@@ -186,13 +194,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer phone number
-            if (ACustomer.CustomerPhoneNo != "01234567890")
+            if (ACustomer.CustomerPhoneNo != "07861728291")
             {
                 OK = false;
             }
@@ -208,13 +216,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer address
-            if (ACustomer.CustomerAddress != "1 High Street, Anytown, AT1 1AA")
+            if (ACustomer.CustomerAddress != "23 Licon Rd, Leicester")
             {
                 OK = false;
             }
@@ -230,13 +238,13 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
             Assert.IsTrue(Found);
             //check the customer date registered
-            if (ACustomer.CustomerDateRegistered != Convert.ToDateTime("01/01/2020"))
+            if (ACustomer.CustomerDateRegistered != Convert.ToDateTime("21/04/2026"))
             {
                 OK = false;
             }
@@ -251,7 +259,7 @@ namespace Testing3
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 10;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see that the result is correct
@@ -263,6 +271,17 @@ namespace Testing3
             }
 
         }
-      
+        [TestMethod]
+        public void ValidateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
     }
 }

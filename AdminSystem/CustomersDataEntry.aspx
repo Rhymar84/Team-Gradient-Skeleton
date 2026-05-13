@@ -10,6 +10,7 @@
     This is the Customer Management Entry Page
     <form id="form1" runat="server">
         <div>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 429px; top: 72px; position: absolute; width: 55px" Text="Find" />
         </div>
         <p>
             <asp:Label ID="lblCustomerID" runat="server" style="z-index: 1; left: 10px; top: 77px; position: absolute" Text="Customer ID" height="21px"></asp:Label>
