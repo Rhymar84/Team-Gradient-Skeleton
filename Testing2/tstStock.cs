@@ -32,5 +32,49 @@ namespace Testing2
             anStock.DateAdded = TestData;
             Assert.AreEqual(anStock.DateAdded, TestData);
         }
+        [TestMethod]
+
+        public void StockIDPropertyOK()
+        {
+            clsStock anStock = new clsStock();
+            Int32 TestData = 1;
+            anStock.StockID = TestData;
+            Assert.AreEqual(anStock.StockID, TestData);
+        }
+
+        [TestMethod]
+
+        public void StockNamePropertyOK()
+        {
+            clsStock anStock = new clsStock();
+            string TestData = "Test Stock Name";
+            anStock.StockName = TestData;
+            Assert.AreEqual(anStock.StockName, TestData);
+        }
+
+        [TestMethod]
+
+        public void StockPricePropertyOK()
+        {
+            clsStock anStock = new clsStock();
+            decimal TestData = 9.99m;
+            anStock.StockPrice = TestData;
+            Assert.AreEqual(anStock.StockPrice, TestData);
+        }
+
+        [TestMethod]
+
+        public void FindMethodOK()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Int32 StockID = 1;
+            Found = anStock.Find(StockID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+
+    }
 }
-}
+
