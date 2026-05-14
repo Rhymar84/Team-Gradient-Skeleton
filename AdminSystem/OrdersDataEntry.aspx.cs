@@ -46,4 +46,40 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
         
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create clsOrder instance
+        clsOrder AnOrder = new clsOrder();
+        Int32 OrderNo;
+        try
+        {
+            OrderNo = Convert.ToInt32(txtOrderNo.Text);
+        }
+        catch (FormatException)
+        {
+            lblError.Text = "Invalid OrderNo.";
+            return;
+        }
+        
+
+        //search for record
+        if (AnOrder.Find(OrderNo) == true)
+        {
+            //display values in form
+            txtDateOrdered.Text = AnOrder.DateOrdered.ToString();
+            txtShippingAddress.Text = AnOrder.ShippingAddress;
+            txtOrderStatus.Text = AnOrder.OrderStatus;
+            txtDeliveryInstructions.Text = AnOrder.DeliveryInstructions;
+            chkExpressShipping.Checked = AnOrder.ExpressShipping;
+            txtSubtotal.Text = AnOrder.Subtotal.ToString();
+
+            lblError.Text = ""; //remove possible pre-existin errors
+        }
+        else
+        {
+            lblError.Text = "No record found.";
+        }
+
+    }
 }
