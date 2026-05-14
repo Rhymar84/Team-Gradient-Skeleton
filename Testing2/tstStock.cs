@@ -33,3 +33,4 @@ namespace Testing2
             Assert.AreEqual(anStock.DateAdded, TestData);
         }
 }
+}
