@@ -73,12 +73,12 @@ namespace ClassLibrary
             if (deliveryInstructions.Length < DeliveryInstructionsMinLength)
             {
                 //record error
-                Error += "The shipping address must have a value : ";
+                Error += "The delivery instructions must have a value : ";
             }
             //is within char limit
             if (deliveryInstructions.Length > DeliveryInstructionsMaxLength)
             {
-                Error += "Shipping address must be " + DeliveryInstructionsMaxLength + " characters max : ";
+                Error += "Delivery instructions must be " + DeliveryInstructionsMaxLength + " characters max : ";
             }
 
             // ------------- DATE ORDERED -------------
@@ -93,7 +93,7 @@ namespace ClassLibrary
             }
             catch (FormatException)
             {
-                Error += "The date was invalid : ";
+                Error += "The date must be valid format : ";
             }
 
             // ------------- SUBTOTAL -------------
@@ -117,7 +117,7 @@ namespace ClassLibrary
             }
             catch (FormatException)
             {
-                Error += "The date was invalid : ";
+                Error += "The subtotal must be valid format : ";
             }
 
             return Error;

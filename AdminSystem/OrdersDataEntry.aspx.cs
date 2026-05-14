@@ -17,17 +17,33 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-        //capture data
-        AnOrder.OrderNo = Convert.ToInt32(txtOrderNo.Text);
-        AnOrder.DateOrdered = DateTime.Now;
-        AnOrder.ShippingAddress = txtShippingAddress.Text;
-        AnOrder.OrderStatus = "ordered";
-        AnOrder.DeliveryInstructions = txtDeliveryInstructions.Text;
-        AnOrder.ExpressShipping = chkExpressShipping.Checked;
-        AnOrder.Subtotal = Convert.ToDecimal(txtSubtotal.Text);
-        //store the order in session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to view page
-        Response.Redirect("OrdersViewer.aspx");
+        String dateOrdered = txtDateOrdered.Text;
+        String shippingAddress = txtShippingAddress.Text;
+        String orderStatus = txtOrderStatus.Text;
+        String deliveryInstructions = txtDeliveryInstructions.Text;
+        String subtotal = txtSubtotal.Text;
+
+        String Error = AnOrder.Valid(dateOrdered, shippingAddress, orderStatus, deliveryInstructions, subtotal);
+        if (Error == "")
+        {
+            //capture data
+            AnOrder.OrderNo = 1;
+            AnOrder.DateOrdered = Convert.ToDateTime(txtDateOrdered.Text);
+            AnOrder.ShippingAddress = txtShippingAddress.Text;
+            AnOrder.OrderStatus = txtOrderStatus.Text;
+            AnOrder.DeliveryInstructions = txtDeliveryInstructions.Text;
+            AnOrder.ExpressShipping = chkExpressShipping.Checked;
+            AnOrder.Subtotal = Convert.ToDecimal(txtSubtotal.Text);
+            //store the order in session object
+            Session["AnOrder"] = AnOrder;
+            //navigate to view page
+            Response.Redirect("OrdersViewer.aspx");
+        }
+        else
+        {
+            //display error
+            lblError.Text = Error;
+        }
+        
     }
 }
