@@ -31,17 +31,32 @@ namespace ClassLibrary
             "cancelled"
         };
 
-        public bool Find(int primaryKey)
+        public bool Find(int orderNo)
         {
-            OrderNo = 7;
-            DateOrdered = Convert.ToDateTime("02/04/2026");
-            ShippingAddress = "139 Green Lane, Leicester, Leicestershire, L43 3ZT";
-            OrderStatus = "delivered";
-            DeliveryInstructions = "<none given>";
-            ExpressShipping = true;
-            Subtotal = 1399.99m;
+            //create instance of SQL connection
+            clsDataConnection DB = new clsDataConnection();
+            //add parameter for order no to search
+            DB.AddParameter("@OrderNo", orderNo);
+            //execute stored procedure
+            DB.Execute("sproc_tblOrders_FilterByOrderNo");
 
-            return true;
+            //one or zero records found
+            if (DB.Count == 1) //record found
+            {
+                //copy data from database to private data members
+                OrderNo = orderNo;
+                DateOrdered = Convert.ToDateTime(DB.DataTable.Rows[0]["dateOrdered"]);
+                ShippingAddress = Convert.ToString(DB.DataTable.Rows[0]["shippingAddress"]);
+                OrderStatus = Convert.ToString(DB.DataTable.Rows[0]["orderStatus"]);
+                DeliveryInstructions = Convert.ToString(DB.DataTable.Rows[0]["deliveryInstructions"]);
+                ExpressShipping = Convert.ToBoolean(DB.DataTable.Rows[0]["expressShipping"]);
+                Subtotal = Convert.ToDecimal(DB.DataTable.Rows[0]["subTotal"]);
+                return true;
+            }
+            else //no record, return false
+            {   
+                return false;
+            }
         }
 
         public string Valid(string dateOrdered, string shippingAddress, string orderStatus, string deliveryInstructions, string subtotal)

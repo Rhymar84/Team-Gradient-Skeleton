@@ -9,8 +9,9 @@
 <body>
     &nbsp;<form id="form1" runat="server">
         <div>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; top: 33px; position: absolute; left: 379px" TabIndex="10" Text="Find" />
         </div>
-        <asp:Label ID="lblOrderNo" runat="server" style="z-index: 1; left: 11px; top: 36px; position: absolute; right: 1215px" Text="Order No." width="123px"></asp:Label>
+        <asp:Label ID="lblOrderNo" runat="server" style="z-index: 1; left: 11px; top: 36px; position: absolute; " Text="Order No." width="123px"></asp:Label>
         <asp:TextBox ID="txtOrderNo" runat="server" style="z-index: 1; left: 163px; top: 35px; position: absolute" TabIndex="1"></asp:TextBox>
         <p style="height: 19px">
             &nbsp;</p>

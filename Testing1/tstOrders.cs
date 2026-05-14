@@ -185,7 +185,7 @@ namespace Testing1
             Int32 OrderNo = 7;
             Found = AnOrder.Find(OrderNo);
 
-            if (AnOrder.DeliveryInstructions == "<none given>")
+            if (AnOrder.DeliveryInstructions == "none given")
             {
                 OK = true;
             }
@@ -239,7 +239,7 @@ namespace Testing1
         String DateOrdered = DateTime.Now.ToShortDateString();
         String ShippingAddress = "15 Left Rd";
         String OrderStatus = "delivered";
-        String DeliveryInstructions = "<none given>";
+        String DeliveryInstructions = "none given";
         String Subtotal = "399.99";
 
         [TestMethod]
