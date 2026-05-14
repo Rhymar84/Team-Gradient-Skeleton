@@ -149,6 +149,21 @@ namespace ClassLibrary
 
         public string Valid(string customerName, string customerEmail, string customerPhoneNo, string customerAddress, string customerDateRegistered)
         {
+            //create a string variable to store the error
+             String Error = "";
+            //if the customer name is blank
+            if (customerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The customer name may not be blank : ";
+            }
+            //if the customer name is greater than 50 characters
+            if (customerName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The customer name must be less than 50 characters : ";
+            }
+            //return any error messages
             return "";
         }
     }

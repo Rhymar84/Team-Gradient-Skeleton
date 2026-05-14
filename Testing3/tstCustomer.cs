@@ -7,8 +7,8 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
-       //good test data
-       //create some test data to pass to the method
+        //good test data
+        //create some test data to pass to the method
         string CustomerName = "Drake Lamar";
         string CustomerEmail = "drakelamar@gmail.com";
         string CustomerPhoneNo = "01234567890";
@@ -283,5 +283,84 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
+        public void CustomerNameMinLessOne()
+        {             //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string CustomerName = ""; //this should trigger an error
+            //invoke the method
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = "a"; //this should be ok
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = "aa"; //this should be ok
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void CustomerNameMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = new string('a', 49); //this should be ok
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = new string('a', 50); //this should be ok
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = new string('a', 51); //this should trigger an error
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = new string('a', 25); //this should be ok
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void CustomerNameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustomerName = new string('a', 500); //this should trigger an error
+            Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
+
