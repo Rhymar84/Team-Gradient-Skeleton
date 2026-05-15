@@ -149,8 +149,75 @@ namespace ClassLibrary
 
         public string Valid(string customerName, string customerEmail, string customerPhoneNo, string customerAddress, string customerDateRegistered)
         {
-            return "";
+            String Error = "";
+            DateTime DateTemp;
+            //-----------------Name validation-----------------
+            if (customerName.Length == 0)
+            {
+                Error += "The customer name may not be blank : ";
+            }
+
+            if (customerName.Length > 50)
+            {
+                Error += "The customer name must be less than 50 characters : ";
+            }
+            //------------------Date validation-----------------
+            try
+            {
+                DateTemp = Convert.ToDateTime(customerDateRegistered);
+
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error += "The date cannot be in the past : ";
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error += "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                Error += "The date was not a valid date : ";
+            }
+            //-----------------Email validation-----------------
+            if (customerEmail.Length == 0)
+            {
+                Error += "The customer email may not be blank : ";
+            }
+            if
+            (customerEmail.Length > 50)
+            {
+                Error += "The customer email must be less than 50 characters : ";
+            }
+            //Phone number validation
+            if (customerPhoneNo.Length == 0)
+            {
+                Error += "The customer phone number may not be blank : ";
+            }
+            // minimum length = 11
+            if (customerPhoneNo.Length < 11)
+            {
+                Error += "The phone number must be at least 11 characters : ";
+            }
+
+            // maximum length = 15
+            if (customerPhoneNo.Length > 15)
+            {
+                Error += "The phone number must be less than or equal to 15 characters : ";
+            }
+            //------------------Address validation-----------------
+            if (customerAddress.Length == 0)
+            {
+                Error += "The customer address may not be blank : ";
+            }
+            if (customerAddress.Length > 100)
+            {
+                Error += "The customer address must be less than or equal to 100 characters : ";
+            }
+            return Error;
         }
+
     }
 }
 
