@@ -425,6 +425,7 @@ namespace Testing3
             Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
             Assert.AreNotEqual(Error, "");
         }
+
         [TestMethod]
         public void CustomerEmailMinLessOne()
         {
@@ -558,7 +559,7 @@ namespace Testing3
             String Error;
             string CustomerPhoneNo = new string('a', 8); //this should trigger an error
             Error = ACustomer.Valid(CustomerName, CustomerEmail, CustomerPhoneNo, CustomerAddress, CustomerDateRegistered);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual("", Error);
         }
         [TestMethod]
         public void CustomerPhoneNoExtremeMax()
