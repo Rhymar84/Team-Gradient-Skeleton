@@ -1,69 +1,45 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StockDataEntry.aspx.cs" Inherits="_1_ConfirmDelete" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StockDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Stock Item Entry</title>
-    <style>
-        .field-row { margin-bottom: 10px; }
-        .field-label { display: inline-block; width: 140px; font-weight: bold; }
-        .field-input { width: 200px; }
-        .error { color: red; font-weight: bold; }
-        .button-bar { margin-top: 20px; }
-    </style>
+    <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <h2>Stock</h2>
-
-        <!-- ItemNo (primary key, read-only for editing) -->
-        <div class="field-row">
-            <span class="field-label">Item No:</span>
-            <asp:TextBox ID="txtItemNo" runat="server" CssClass="field-input" Enabled="false" />
-        </div>
-
-        <!-- ModelName -->
-        <div class="field-row">
-            <span class="field-label">Model Name:</span>
-                 <asp:TextBox ID="txtModelName" runat="server" CssClass="field-input" MaxLength="50" />
- &nbsp;            </div>
-
-        <!-- Price (varchar) -->
-        <div class="field-row">
-            <span class="field-label">Price:</span>
-            <asp:TextBox ID="txtPrice" runat="server" CssClass="field-input" MaxLength="10" />
-                              </div>
-
-        <!-- Quantity -->
-        <div class="field-row">
-            <span class="field-label">Quantity:</span>
-            <asp:TextBox ID="txtQuantity" runat="server" CssClass="field-input" />
-                              </div>
-
-        <!-- InStock (checkbox) -->
-        <div class="field-row">
-            <span class="field-label">In Stock:</span>
-                   <asp:CheckBox ID="chkInStock" runat="server" />
+    <form id="form1" runat="server">
+        <div>
         </div>
-
-        <!-- LastDateRestocked -->
-        <div class="field-row">
-            <span class="field-label">Last Restocked:</span>
-            <asp:TextBox ID="txtLastDateRestocked" runat="server" CssClass="field-input" TextMode="Date" />
-                   </div>
-
-        <!-- Buttons -->
-        <div class="button-bar">
-            <asp:Button ID="btnOK" Text="OK" runat="server" OnClick="btnOK_Click" />
-            <asp:Button ID="btnCancel" Text="Cancel" runat="server" OnClick="btnCancel_Click" CausesValidation="false" />
-        </div>
-
-        <!-- Error Label -->
-        <div class="field-row">
-            <asp:Label ID="lbError" runat="server" CssClass="error" EnableViewState="false" />
-        </div>
-
-        <!-- Summary of all validation errors -->
-           </form>
+        <asp:Label ID="lblStockID" runat="server" style="z-index: 1; left: 10px; top: 72px; position: absolute" Text="Stock ID"></asp:Label>
+        <p>
+            <asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 110px; top: 71px; position: absolute; width: 150px"></asp:TextBox>
+        </p>
+        <asp:Label ID="lblModelName" runat="server" style="z-index: 1; left: 10px; top: 129px; position: absolute" Text="Model Name"></asp:Label>
+        <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; left: 109px; top: 129px; position: absolute; width: 150px"></asp:TextBox>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Label ID="lblPrice" runat="server" style="z-index: 1; left: 10px; top: 186px; position: absolute" Text="Price"></asp:Label>
+            <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; left: 110px; top: 184px; position: absolute; width: 150px; right: 215px"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblQuantity" runat="server" style="z-index: 1; left: 10px; top: 224px; position: absolute" Text="Quantity"></asp:Label>
+            <asp:TextBox ID="TextBox4" runat="server" style="z-index: 1; left: 110px; top: 224px; position: absolute; width: 150px"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Label ID="lblInStock" runat="server" style="z-index: 1; left: 10px; top: 262px; position: absolute" Text="In Stock"></asp:Label>
+            <asp:CheckBox ID="CheckBox1" runat="server" style="z-index: 1; left: 115px; top: 262px; position: absolute; width: 145px" />
+        </p>
+        <p>
+            <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 10px; top: 300px; position: absolute" Text="lblError"></asp:Label>
+        </p>
+        <p>
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 27px; top: 338px; position: absolute; width: 43px" Text="OK" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 102px; top: 338px; position: absolute; width: 75px" Text="Cancel" />
+            <br />
+        </p>
+        <p>
+            &nbsp;</p>
+    </form>
 </body>
 </html>
