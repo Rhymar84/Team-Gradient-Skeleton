@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,10 +25,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ACustomer.CustomerAddress = txtCustomerAddress.Text;
         ACustomer.CustomerDateRegistered = Convert.ToDateTime(DateTime.Now);
         ACustomer.CustomerIsVerified = chkCustomerIsVerified.Checked;
-        //store the customer name in the session object
-        Session["ACustomer"] = ACustomer;
-        //navigate to the view page
-        Response.Redirect("CustomersViewer.aspx");
+
+        string Error = ACustomer.Valid(ACustomer.CustomerName, ACustomer.CustomerEmail, ACustomer.CustomerPhoneNo, ACustomer.CustomerAddress, ACustomer.CustomerDateRegistered.ToString());
+        if (Error == "")
+        {
+            //capture data
+            ACustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+            ACustomer.CustomerName = txtCustomerName.Text;
+            ACustomer.CustomerEmail = txtCustomerEmail.Text;
+            ACustomer.CustomerPhoneNo = txtCustomerPhoneNo.Text;
+            ACustomer.CustomerAddress = txtCustomerAddress.Text;
+            ACustomer.CustomerDateRegistered = Convert.ToDateTime(DateTime.Now);
+            ACustomer.CustomerIsVerified = chkCustomerIsVerified.Checked;
+            //store the customer name in the session object
+            Session["ACustomer"] = ACustomer;
+            //navigate to the view page
+            Response.Redirect("CustomersViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

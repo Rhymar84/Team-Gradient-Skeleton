@@ -162,16 +162,15 @@ namespace ClassLibrary
                 Error += "The customer name must be less than 50 characters : ";
             }
             //------------------Date validation-----------------
+            DateTime DateComp = DateTime.Now.Date;
             try
             {
                 DateTemp = Convert.ToDateTime(customerDateRegistered);
-
-                if (DateTemp < DateTime.Now.Date)
+                if (DateTemp < DateComp)
                 {
                     Error += "The date cannot be in the past : ";
                 }
-
-                if (DateTemp > DateTime.Now.Date)
+                if (DateTemp > DateComp)
                 {
                     Error += "The date cannot be in the future : ";
                 }
@@ -180,17 +179,42 @@ namespace ClassLibrary
             {
                 Error += "The date was not a valid date : ";
             }
-            //-----------------Email validation-----------------
-            if (customerEmail.Length == 0)
+                /*if (string.IsNullOrWhiteSpace(customerDateRegistered))
+                {
+                    Error += "The date may not be blank : ";
+                }
+                else
+                {
+                    try
+                    {
+                        DateTemp = Convert.ToDateTime(customerDateRegistered);
+
+                        if (DateTemp < DateTime.Now.Date)
+                        {
+                            Error += "The date cannot be in the past : ";
+                        }
+
+                        if (DateTemp > DateTime.Now.Date)
+                        {
+                            Error += "The date cannot be in the future : ";
+                        }
+                    }
+                    catch
+                    {
+                        Error += "The date was not a valid date : ";
+                    }
+                }*/
+                //-----------------Email validation-----------------
+                if (customerEmail.Length == 0)
             {
                 Error += "The customer email may not be blank : ";
             }
             if
-            (customerEmail.Length > 50)
+            (customerEmail.Length > 60)
             {
-                Error += "The customer email must be less than 50 characters : ";
+                Error += "The customer email must be less than 60 characters : ";
             }
-            //Phone number validation
+            //----------------Phone number validation--------------
             if (customerPhoneNo.Length == 0)
             {
                 Error += "The customer phone number may not be blank : ";
@@ -211,9 +235,9 @@ namespace ClassLibrary
             {
                 Error += "The customer address may not be blank : ";
             }
-            if (customerAddress.Length > 100)
+            if (customerAddress.Length > 70)
             {
-                Error += "The customer address must be less than or equal to 100 characters : ";
+                Error += "The customer address must be less than or equal to 70 characters : ";
             }
             return Error;
         }
