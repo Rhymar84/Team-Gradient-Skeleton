@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Testing1
 {
@@ -516,6 +517,82 @@ namespace Testing1
             Error = AnOrder.Valid(DateOrdered, ShippingAddress, OrderStatus, DeliveryInstructions, Subtotal);
             Assert.AreNotEqual(Error, "");
 
+        }
+    }
+
+    [TestClass]
+    public class tstOrderCollection
+    {
+        [TestMethod]
+        public void CollectionInstanceOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            Assert.IsNotNull(AllOrders);
+        }
+
+        [TestMethod]
+        public void OrderListOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add item to list
+            clsOrder TestItem = new clsOrder();
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "14 Right Rd";
+            TestItem.ExpressShipping = true;
+            TestItem.OrderStatus = "shipped";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to test list
+            TestList.Add(TestItem);
+            //assign data to OrderList property
+            AllOrders.OrderList = TestList;
+            Assert.AreEqual(AllOrders.OrderList, TestList);
+        }
+
+        [TestMethod]
+        public void ThisOrderOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            clsOrder TestOrder = new clsOrder();
+            //set properties
+            TestOrder.DateOrdered = DateTime.Now;
+            TestOrder.ShippingAddress = "14 Right Rd";
+            TestOrder.ExpressShipping = true;
+            TestOrder.OrderStatus = "shipped";
+            TestOrder.OrderNo = 18;
+            TestOrder.DeliveryInstructions = "none given";
+            TestOrder.Subtotal = 289.99m;
+            //assign data to ThisOrder property
+            AllOrders.ThisOrder = TestOrder;
+            Assert.AreEqual(AllOrders.ThisOrder, TestOrder);
+        }
+
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add item to list
+            clsOrder TestItem = new clsOrder();
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "14 Right Rd";
+            TestItem.ExpressShipping = true;
+            TestItem.OrderStatus = "shipped";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to test list
+            TestList.Add(TestItem);
+            //assign data to OrderList property
+            AllOrders.OrderList = TestList;
+            Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
     }
 
