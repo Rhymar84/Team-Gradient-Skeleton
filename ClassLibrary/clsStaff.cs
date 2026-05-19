@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Security.Permissions;
 
 namespace ClassLibrary
 {
@@ -150,13 +149,15 @@ namespace ClassLibrary
         }
 
 
-
+        /******* Valid METHOD *******/
         public string Valid(string staffName, string staffRole, string staffAddress, string staffPhoneNo, string staffDateofHire)
         {
             //create a string variable to store the error
             string Error = "";
+
             //create a temporary variable to store the date values
             DateTime DateTemp;
+
             //if the staffName is blank
             if (staffName.Length == 0)
             {
@@ -169,19 +170,58 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The staff name must be less than 50 characters : ";
             }
+
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+
+            try
+            {
+
+
+                //copy the dateofHire value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(staffDateofHire);
+                if (DateTemp < DateComp.AddYears(-100))
+                {
+                    //record the error
+                    Error = Error + "The date cannot be a 100 years in the past: ";
+                }
+
+
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
+            }
+
+            //if the staff phone No is too long
+            if (staffPhoneNo.Length > 15)
+            {
+                //record the error
+                Error = Error + "The staff phone number must be less than 15 characters : ";
+            }
+            //if the staff address is too long
+            if (staffAddress.Length > 100)
+            {
+                //record the error
+                Error = Error + "The staff address must be more than 50 characters:";
+            }
+            //if the staff role is too long
+            if (staffRole.Length > 50)
+            {
+                //record the error
+                Error = Error + "The staff role must be less than 50 characters : ";
+            }
             //return any error messages
             return Error;
         }
-
-        //copy dateofhire to the DataTemp variable
-        DateTemp = Convert.ToDateTime(staffDateofHire);
-        //check to see if the date is less than today's date
-        if (DateTemp<DateTime.Now.Date)
-        {
-            //record the error
-            Error = Error + "The date of hire cannot be in the past : ";
-        }
-     //return any error messages
-        return Error;
-        }
- 
+    }
+}
