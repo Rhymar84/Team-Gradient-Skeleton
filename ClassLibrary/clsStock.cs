@@ -4,6 +4,8 @@ namespace ClassLibrary
 {
     public class clsStock
     {
+        public int itemNo;
+
         public bool Active { get; set; }
         public DateTime DateAdded { get; set; }
         public int txtStockID { get; set; }

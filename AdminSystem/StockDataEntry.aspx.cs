@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    private object txtItemNo;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Create a new instance of clsStock
         clsStock anStock = new clsStock();
         //capture the item number
-        anStock.txtStockID = txtItemNo.Text;
+        anStock.itemNo = Convert.ToInt32(txtItemNo.Text);
         //Store the address in the session object
         Session["AnStock"] = anStock;
         //navigate to the view page

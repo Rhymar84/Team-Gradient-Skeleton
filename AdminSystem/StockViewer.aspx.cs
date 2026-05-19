@@ -16,6 +16,6 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         anStock = (clsStock)Session["AnStock"];
         //display the item number for this entry
-        Response.Write(anStock.ItemNo);
+        Response.Write(anStock.itemNo);
     }
 }

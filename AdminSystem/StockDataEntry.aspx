@@ -12,23 +12,23 @@
         </div>
         <asp:Label ID="lblStockID" runat="server" style="z-index: 1; left: 10px; top: 72px; position: absolute" Text="Stock ID"></asp:Label>
         <p>
-            <asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 110px; top: 71px; position: absolute; width: 150px"></asp:TextBox>
+            <asp:TextBox ID="txtItemNo" runat="server" style="z-index: 1; left: 110px; top: 71px; position: absolute; width: 150px"></asp:TextBox>
         </p>
         <asp:Label ID="lblModelName" runat="server" style="z-index: 1; left: 10px; top: 129px; position: absolute" Text="Model Name"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; left: 109px; top: 129px; position: absolute; width: 150px"></asp:TextBox>
+        <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 109px; top: 129px; position: absolute; width: 150px"></asp:TextBox>
         <p>
             &nbsp;</p>
         <p>
             <asp:Label ID="lblPrice" runat="server" style="z-index: 1; left: 10px; top: 186px; position: absolute" Text="Price"></asp:Label>
-            <asp:TextBox ID="TextBox3" runat="server" style="z-index: 1; left: 110px; top: 184px; position: absolute; width: 150px; right: 215px"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" style="z-index: 1; left: 110px; top: 184px; position: absolute; width: 150px; right: 215px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblQuantity" runat="server" style="z-index: 1; left: 10px; top: 224px; position: absolute" Text="Quantity"></asp:Label>
-            <asp:TextBox ID="TextBox4" runat="server" style="z-index: 1; left: 110px; top: 224px; position: absolute; width: 150px"></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" runat="server" style="z-index: 1; left: 110px; top: 224px; position: absolute; width: 150px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="lblInStock" runat="server" style="z-index: 1; left: 10px; top: 262px; position: absolute" Text="In Stock"></asp:Label>
-            <asp:CheckBox ID="CheckBox1" runat="server" style="z-index: 1; left: 115px; top: 262px; position: absolute; width: 145px" />
+            <asp:CheckBox ID="txtStock" runat="server" style="z-index: 1; left: 115px; top: 262px; position: absolute; width: 145px" />
         </p>
         <p>
             <asp:Label ID="Label1" runat="server" style="z-index: 1; left: 10px; top: 300px; position: absolute" Text="lblError"></asp:Label>
