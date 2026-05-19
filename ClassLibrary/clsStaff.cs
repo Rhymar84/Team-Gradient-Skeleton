@@ -172,16 +172,17 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
-
-        //copy dateofhire to the DataTemp variable
-        DateTemp = Convert.ToDateTime(staffDateofHire);
-        //check to see if the date is less than today's date
-        if (DateTemp<DateTime.Now.Date)
-        {
-            //record the error
-            Error = Error + "The date of hire cannot be in the past : ";
-        }
-     //return any error messages
-        return Error;
-        }
+    }
+}
+     //   //copy dateofhire to the DataTemp variable
+     //   DateTemp = Convert.ToDateTime(staffDateofHire);
+     //   //check to see if the date is less than today's date
+     //   if (DateTemp<DateTime.Now.Date)
+     //   {
+     //       //record the error
+     //       Error = Error + "The date of hire cannot be in the past : ";
+     //   }
+     ////return any error messages
+     //   return Error;
+     //   }
  

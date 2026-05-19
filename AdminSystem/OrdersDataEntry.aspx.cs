@@ -8,9 +8,18 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderNo;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        OrderNo = Convert.ToInt32(Session["OrderNo"]);
+        if (IsPostBack == false)
+        {
+            if (OrderNo != -1) //Not a new record
+            {
+                DisplayOrder();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -27,17 +36,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture data
-            AnOrder.OrderNo = 1;
+            AnOrder.OrderNo = OrderNo;
             AnOrder.DateOrdered = Convert.ToDateTime(txtDateOrdered.Text);
             AnOrder.ShippingAddress = txtShippingAddress.Text;
             AnOrder.OrderStatus = txtOrderStatus.Text;
             AnOrder.DeliveryInstructions = txtDeliveryInstructions.Text;
             AnOrder.ExpressShipping = chkExpressShipping.Checked;
             AnOrder.Subtotal = Convert.ToDecimal(txtSubtotal.Text);
-            //store the order in session object
-            Session["AnOrder"] = AnOrder;
-            //navigate to view page
-            Response.Redirect("OrdersViewer.aspx");
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            //if new record then add
+            if (OrderNo == -1)
+            {
+                OrderList.Add();
+            }
+            else //otherwise update existing
+            {
+                OrderList.Update();
+            }
+            
+            //redirect back to list page
+            Response.Redirect("OrdersList.aspx");
         }
         else
         {
@@ -81,5 +100,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = "No record found.";
         }
 
+    }
+
+    void DisplayOrder()
+    {   
+        //find order
+        clsOrderCollection OrderList = new clsOrderCollection();
+        OrderList.ThisOrder.Find(OrderNo);
+        //display in form
+        txtOrderNo.Text = OrderList.ThisOrder.OrderNo.ToString();
+        txtDateOrdered.Text = OrderList.ThisOrder.DateOrdered.ToString();
+        txtShippingAddress.Text = OrderList.ThisOrder.ShippingAddress.ToString();
+        txtOrderStatus.Text = OrderList.ThisOrder.OrderStatus.ToString();
+        txtDeliveryInstructions.Text = OrderList.ThisOrder.DeliveryInstructions.ToString();
+        chkExpressShipping.Checked = OrderList.ThisOrder.ExpressShipping;
+        txtSubtotal.Text = OrderList.ThisOrder.Subtotal.ToString();
     }
 }
