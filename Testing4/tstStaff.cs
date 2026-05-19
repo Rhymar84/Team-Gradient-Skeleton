@@ -434,7 +434,7 @@ namespace Testing4
             DateTime TestDate;
             //set the date to todays date
             TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 100 years
+            //change the date to whatever the date is less than 1000 years
             TestDate = TestDate.AddYears(-1000);
             string staffDateofHire = TestDate.ToString();
             //invoke the method
@@ -453,7 +453,7 @@ namespace Testing4
             DateTime TestDate;
             //set the date to todays date
             TestDate = DateTime.Now.Date;
-            //change the date to whatever the date is less 1 day
+            //change the date to whatever the date is less than 100 years
             TestDate = TestDate.AddYears(-101);
             //convert the date variable to a string variable
             string staffDateofHire = TestDate.ToString();
