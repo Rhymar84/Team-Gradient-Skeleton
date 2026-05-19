@@ -37,4 +37,23 @@ public partial class _1_List : System.Web.UI.Page
         //redirect to data entry
         Response.Redirect("OrdersDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderNo;
+        //if record is selected
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            //get PK
+            OrderNo = Convert.ToInt32(lstOrderList.SelectedValue);
+            //store data in session obj
+            Session["OrderNo"] = OrderNo;
+            Response.Redirect("OrdersDataEntry.aspx");
+
+        } 
+        else //no record selected
+        {
+            lblError.Text = "Please select a record.";
+        }
+    }
 }
