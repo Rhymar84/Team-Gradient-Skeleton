@@ -67,5 +67,36 @@ namespace Testing2
             anStock.LastDateRestocked = TestData;
             Assert.AreEqual(anStock.LastDateRestocked, TestData);
         }
+
+        [TestMethod]
+
+        public void FindMethodOK()
+        {
+            //Creating an instance of the class we want to create
+            clsStock anStock = new clsStock();
+            //Create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //Create some test data to use with the method
+            Int32 StockID = 21;
+            //Invoke the method
+            Found = anStock.Find(StockID);
+            //test to see that the result is true
+            Assert.isTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestItemNoFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 itemNo = 1;
+            Found = anStock.Find(itemNo);
+            if (anStock.itemNo != itemNo)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
+}
