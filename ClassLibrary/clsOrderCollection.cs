@@ -40,5 +40,22 @@ namespace ClassLibrary
 
             }
         }
+
+        public int Add()
+        {
+            //adds a record to the database based on ThisOrder
+            // connect to DB
+            clsDataConnection DB = new clsDataConnection();
+            //set params
+            DB.AddParameter("@DateOrdered", ThisOrder.DateOrdered);
+            DB.AddParameter("@ShippingAddress", ThisOrder.ShippingAddress);
+            DB.AddParameter("@OrderStatus", ThisOrder.OrderStatus);
+            DB.AddParameter("@DeliveryInstructions", ThisOrder.DeliveryInstructions);
+            DB.AddParameter("@ExpressShipping", ThisOrder.ExpressShipping);
+            DB.AddParameter("@Subtotal", ThisOrder.Subtotal);
+
+            //execute stored procedure and return primary key
+            return DB.Execute("sproc_tblOrders_Insert");
+        }
     }
 }

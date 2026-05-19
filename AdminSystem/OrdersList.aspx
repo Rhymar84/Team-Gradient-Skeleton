@@ -11,6 +11,7 @@
         <div>
             <asp:ListBox ID="lstOrderList" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 330px; width: 323px"></asp:ListBox>
         </div>
+        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 25px; top: 372px; position: absolute" Text="Add" />
     </form>
 </body>
 </html>

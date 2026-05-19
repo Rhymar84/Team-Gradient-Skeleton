@@ -34,10 +34,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.DeliveryInstructions = txtDeliveryInstructions.Text;
             AnOrder.ExpressShipping = chkExpressShipping.Checked;
             AnOrder.Subtotal = Convert.ToDecimal(txtSubtotal.Text);
-            //store the order in session object
-            Session["AnOrder"] = AnOrder;
-            //navigate to view page
-            Response.Redirect("OrdersViewer.aspx");
+
+            //add record to database
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+            //redirect back to list page
+            Response.Redirect("OrdersList.aspx");
         }
         else
         {

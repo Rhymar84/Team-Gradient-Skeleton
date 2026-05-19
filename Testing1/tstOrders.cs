@@ -594,6 +594,32 @@ namespace Testing1
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey;
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "14 Right Rd";
+            TestItem.ExpressShipping = true;
+            TestItem.OrderStatus = "shipped";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to collection
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //Get primary key and search for it
+            TestItem.OrderNo = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test that the record was found in the database
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
     }
 
     
