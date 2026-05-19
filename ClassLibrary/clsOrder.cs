@@ -138,5 +138,17 @@ namespace ClassLibrary
             return Error;
             
         }
+
+        public bool Equals(clsOrder Other)
+        {
+            return
+            OrderNo == Other.OrderNo &&
+            DateOrdered.Date == Other.DateOrdered.Date &&
+            ShippingAddress == Other.ShippingAddress &&
+            OrderStatus == Other.OrderStatus &&
+            DeliveryInstructions == Other.DeliveryInstructions &&
+            ExpressShipping == Other.ExpressShipping &&
+            Subtotal == Other.Subtotal;
+        }
     }
 }

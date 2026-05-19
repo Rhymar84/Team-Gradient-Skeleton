@@ -19,8 +19,8 @@ namespace Testing2
         {
             clsStock anStock = new clsStock();
             Int32 TestData = 1;
-            anStock.ItemNo = TestData;
-            Assert.AreEqual(anStock.ItemNo, TestData);
+            anStock.itemNo = TestData;
+            Assert.AreEqual(anStock.itemNo, TestData);
         }
 
         [TestMethod]

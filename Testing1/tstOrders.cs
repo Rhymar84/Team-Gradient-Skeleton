@@ -594,6 +594,73 @@ namespace Testing1
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey;
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "14 Right Rd";
+            TestItem.ExpressShipping = true;
+            TestItem.OrderStatus = "shipped";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to collection
+            AllOrders.SetOrder(TestItem);
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //Get primary key and search for it
+            TestItem.OrderNo = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test that the record was found in the database
+            Assert.IsTrue(AllOrders.ThisOrder.Equals(TestItem));
+            //Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey;
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "14 Right Rd";
+            TestItem.ExpressShipping = true;
+            TestItem.OrderStatus = "shipped";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to collection
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //Get primary key and search for it
+            TestItem.OrderNo = PrimaryKey;
+            //modify the test data
+            TestItem.ShippingAddress = "16 Down Avenue";
+            TestItem.OrderStatus = "cancelled";
+            TestItem.DeliveryInstructions = "put in parcel box";
+            //set record based on new data
+            AllOrders.SetOrder(TestItem);
+            //AllOrders.ThisOrder = TestItem;
+            Console.WriteLine(TestItem.ShippingAddress);
+            //invoke update method
+            AllOrders.Update();
+            //find record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test that the record was found in the database
+            Console.WriteLine(AllOrders.ThisOrder.ShippingAddress);
+            Console.WriteLine(TestItem.ShippingAddress);
+            Assert.IsTrue(AllOrders.ThisOrder.Equals(TestItem));
+            //Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
     }
 
     
