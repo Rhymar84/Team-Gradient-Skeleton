@@ -150,11 +150,38 @@ namespace ClassLibrary
         }
 
 
-        public string Valid(string staffName, string staffRole, string staffAddress, string staffPhoneNo)
-        {
-            return "";
 
+        public string Valid(string staffName, string staffRole, string staffAddress, string staffPhoneNo, string staffDateofHire)
+        {
+            //create a string variable to store the error
+            string Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //if the staffName is blank
+            if (staffName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff name may not be blank : ";
+            }
+            //if the staff name is greater than 50 characters
+            if (staffName.Length > 60)
+            {
+                //record the error
+                Error = Error + "The staff name must be less than 50 characters : ";
+            }
+            //return any error messages
+            return Error;
         }
 
-    }
-}
+        //copy dateofhire to the DataTemp variable
+        DateTemp = Convert.ToDateTime(staffDateofHire);
+        //check to see if the date is less than today's date
+        if (DateTemp<DateTime.Now.Date)
+        {
+            //record the error
+            Error = Error + "The date of hire cannot be in the past : ";
+        }
+     //return any error messages
+        return Error;
+        }
+ 
