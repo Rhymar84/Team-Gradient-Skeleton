@@ -162,13 +162,13 @@ namespace ClassLibrary
             if (staffName.Length == 0)
             {
                 //record the error
-                Error = Error + "The staff name may not be blank : ";
+                Error = Error + "Please enter a valid staff name: ";
             }
             //if the staff name is greater than 50 characters
             if (staffName.Length > 60)
             {
                 //record the error
-                Error = Error + "The staff name must be less than 50 characters : ";
+                Error = Error + "Please enter a valid staff name: ";
             }
 
             //create an instance of DateTime to compare with DateTemp
@@ -185,7 +185,7 @@ namespace ClassLibrary
                 if (DateTemp < DateComp.AddYears(-100))
                 {
                     //record the error
-                    Error = Error + "The date cannot be a 100 years in the past: ";
+                    Error = Error + "Please enter a valid date of hire: ";
                 }
 
 
@@ -193,33 +193,57 @@ namespace ClassLibrary
                 if (DateTemp > DateComp)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the future: ";
+                    Error = Error + "Please enter a valid date of hire: ";
                 }
             }
             catch
             {
                 //record the error
-                Error = Error + "The date was not a valid date: ";
+                Error = Error + "Please enter a valid date of hire: ";
             }
 
             //if the staff phone No is too long
             if (staffPhoneNo.Length > 15)
             {
                 //record the error
-                Error = Error + "The staff phone number must be less than 15 characters : ";
+                Error = Error + "Please enter a valid phone number: ";
             }
+            if (staffPhoneNo.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please enter a valid phone number: ";
+            }
+
             //if the staff address is too long
             if (staffAddress.Length > 100)
             {
                 //record the error
-                Error = Error + "The staff address must be more than 50 characters:";
+                Error = Error + "Please enter a valid address:";
+            }
+            if (staffAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please enter a valid address: ";
+            }
+            //if the staff phone No is too long
+            if (staffPhoneNo.Length > 15)
+            {
+                //record the error
+                Error = Error + "Please enter a valid address: ";
             }
             //if the staff role is too long
             if (staffRole.Length > 50)
             {
                 //record the error
-                Error = Error + "The staff role must be less than 50 characters : ";
+                Error = Error + "Please enter a valid staff role: ";
             }
+            //if the staff role is blank
+            if (staffRole.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please enter a valid staff role: ";
+            }
+
             //return any error messages
             return Error;
         }
