@@ -162,7 +162,7 @@ namespace ClassLibrary
             if (staffName.Length == 0)
             {
                 //record the error
-                Error = Error + "Please enter a valid staff name: ";
+                Error = Error + "This is not a valid staff name: ";
             }
             //if the staff name is greater than 50 characters
             if (staffName.Length > 60)
@@ -185,7 +185,7 @@ namespace ClassLibrary
                 if (DateTemp < DateComp.AddYears(-100))
                 {
                     //record the error
-                    Error = Error + "Please enter a valid date of hire: ";
+                    Error = Error + "This is an incorrect date of hire : ";
                 }
 
 
@@ -193,7 +193,7 @@ namespace ClassLibrary
                 if (DateTemp > DateComp)
                 {
                     //record the error
-                    Error = Error + "Please enter a valid date of hire: ";
+                    Error = Error + "This is not a valid date of hire: ";
                 }
             }
             catch
@@ -206,7 +206,7 @@ namespace ClassLibrary
             if (staffPhoneNo.Length > 15)
             {
                 //record the error
-                Error = Error + "Please enter a valid phone number: ";
+                Error = Error + "This isn't a valid phone number: ";
             }
             if (staffPhoneNo.Length <6)
             {
@@ -218,9 +218,9 @@ namespace ClassLibrary
             if (staffAddress.Length > 100)
             {
                 //record the error
-                Error = Error + "Please enter a valid address:";
+                Error = Error + "This isn't a valid address:";
             }
-            if (staffAddress.Length > 5)
+            if (staffAddress.Length == 0)
             {
                 //record the error
                 Error = Error + "Please enter a valid address: ";
@@ -229,7 +229,7 @@ namespace ClassLibrary
             if (staffRole.Length > 50)
             {
                 //record the error
-                Error = Error + "Please enter a valid staff role: ";
+                Error = Error + "This isn't a valid staff role: ";
             }
             // ------------- STAFF ROLE -------------
             //if the staff role is blank

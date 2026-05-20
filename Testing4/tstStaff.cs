@@ -283,7 +283,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //invoke the method 
-            Error = aStaff.Valid(staffName, staffAddress, staffPhoneNo, staffRole, staffDateofHire);
+            Error = aStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
