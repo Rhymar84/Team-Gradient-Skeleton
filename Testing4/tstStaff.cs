@@ -537,6 +537,21 @@ namespace Testing4
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
+        public void StaffAddressMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String staffAddress = "";
+            //invoke the method
+            Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+        [TestMethod]
         public void StaffAddressMin()
         {
             //create an instance of the class we want to create
@@ -544,7 +559,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //this should pass
-            String staffAddress = "64 Zoo La";
+            String staffAddress = "6";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -617,27 +632,25 @@ namespace Testing4
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
-        
         public void StaffPhoneNoMinLessOne()
         {
-            //create an instance of the class we want to create
             clsStaff AStaff = new clsStaff();
-            String Error = "";
-            //this should pass
-            string staffPhoneNo = "";
-            //invoke the method
-            Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            String Error;
+            //test data
+            String staffPhoneNo = ""; //should fail
+
+            Error=AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
+            Assert.AreNotEqual(Error, "");
+  
         }
         [TestMethod]
         public void StaffPhoneNoMin()
         {
             //create an instance of the class we want to create
             clsStaff AStaff = new clsStaff();
-            String Error = "";
+            String Error = "0";
             //this should pass
-            string staffPhoneNo = "0";
+            string staffPhoneNo = "";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct

@@ -157,7 +157,7 @@ namespace ClassLibrary
 
             //create a temporary variable to store the date values
             DateTime DateTemp;
-
+            // ------------- STAFF NAME -------------
             //if the staffName is blank
             if (staffName.Length == 0)
             {
@@ -201,19 +201,19 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "Please enter a valid date of hire: ";
             }
-
+            // ------------- STAFF PHONE NUMBER -------------
             //if the staff phone No is too long
             if (staffPhoneNo.Length > 15)
             {
                 //record the error
                 Error = Error + "Please enter a valid phone number: ";
             }
-            if (staffPhoneNo.Length == 0)
+            if (staffPhoneNo.Length < 7)
             {
                 //record the error
                 Error = Error + "Please enter a valid phone number: ";
             }
-
+            // ------------- STAFF ADDRESS -------------
             //if the staff address is too long
             if (staffAddress.Length > 100)
             {
@@ -225,18 +225,13 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "Please enter a valid address: ";
             }
-            //if the staff phone No is too long
-            if (staffPhoneNo.Length > 15)
-            {
-                //record the error
-                Error = Error + "Please enter a valid address: ";
-            }
             //if the staff role is too long
             if (staffRole.Length > 50)
             {
                 //record the error
                 Error = Error + "Please enter a valid staff role: ";
             }
+            // ------------- STAFF ROLE -------------
             //if the staff role is blank
             if (staffRole.Length == 0)
             {
