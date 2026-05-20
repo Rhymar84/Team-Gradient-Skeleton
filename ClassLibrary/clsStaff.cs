@@ -208,7 +208,7 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "Please enter a valid phone number: ";
             }
-            if (staffPhoneNo.Length < 7)
+            if (staffPhoneNo.Length <6)
             {
                 //record the error
                 Error = Error + "Please enter a valid phone number: ";
@@ -220,7 +220,7 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "Please enter a valid address:";
             }
-            if (staffAddress.Length == 0)
+            if (staffAddress.Length > 5)
             {
                 //record the error
                 Error = Error + "Please enter a valid address: ";

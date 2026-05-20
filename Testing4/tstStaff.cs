@@ -544,7 +544,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //this should pass
-            String staffAddress = "";
+            String staffAddress = "64 Z";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -559,7 +559,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //this should pass
-            String staffAddress = "6";
+            String staffAddress = "64 Zo";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -573,7 +573,7 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //this should pass
-            String staffAddress = "6";
+            String staffAddress = "64";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -586,7 +586,7 @@ namespace Testing4
             clsStaff AStaff = new clsStaff();
             String Error = "";
             //this should pass
-            string staffAddress = "64 Zoo Lanee";
+            string staffAddress = "64 Zoo Lan";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -650,7 +650,7 @@ namespace Testing4
             clsStaff AStaff = new clsStaff();
             String Error = "0";
             //this should pass
-            string staffPhoneNo = "";
+            string staffPhoneNo = "0796945";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
@@ -663,7 +663,7 @@ namespace Testing4
             clsStaff AStaff = new clsStaff();
             String Error = "";
             //this should pass
-            string staffPhoneNo = "07";
+            string staffPhoneNo = "07969454";
             //invoke the method
             Error = AStaff.Valid(staffName, staffRole, staffAddress, staffPhoneNo, staffDateofHire);
             //test to see that the result is correct
