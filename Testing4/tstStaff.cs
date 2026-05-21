@@ -738,42 +738,44 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.AreEqual(Error, "");
             }
-            public class AddMethodTests
+        }
+        [TestClass]
+        public class AddMethodTests
+        {
+            [TestMethod]
+            public void AddMethodOK()
             {
-                [TestMethod]
-                public void AddMethodOK()
-                {
-                    //create an instance of the class we want to create
-                    clsStaffCollection AllStaff = new clsStaffCollection();
+                //create an instance of the class we want to create
+                clsStaffCollection AllStaff = new clsStaffCollection();
 
-                    //create the item of test data
-                    clsStaff TestItem = new clsStaff();
+                //create the item of test data
+                clsStaff TestItem = new clsStaff();
 
-                    //variable to store the primary key
-                    Int32 PrimaryKey = 0;
+                //variable to store the primary key
+                Int32 PrimaryKey = 0;
 
-                    //set its properties
-                    TestItem.StaffID = 2893410;
-                    TestItem.StaffName = "Tyson Granger";
-                    TestItem.StaffPhoneNo = "07969454221";
-                    TestItem.StaffAddress = "64 Zoo Lane";
-                    TestItem.StaffDateofHire = DateTime.Now;
+                //set its properties
+                TestItem.StaffID = 2893410;
+                TestItem.StaffRole = "Staff Admin";
+                TestItem.StaffName = "Tyson Granger";
+                TestItem.StaffPhoneNo = "07969454221";
+                TestItem.StaffAddress = "64 Zoo Lane";
+                TestItem.StaffDateofHire = DateTime.Now;
 
-                    //set ThisAddress to the test data
-                    AllStaff.ThisStaff = TestItem;
+                //set ThisAddress to the test data
+                AllStaff.ThisStaff = TestItem;
 
-                    //add the record
-                    PrimaryKey = AllStaff.Add();
+                //add the record
+                PrimaryKey = AllStaff.Add();
 
-                    //set the primary key of the test data
-                    TestItem.StaffID = PrimaryKey;
+                //set the primary key of the test data
+                TestItem.StaffID = PrimaryKey;
 
-                    //find the record
-                    AllStaff.ThisStaff.Find(PrimaryKey);
+                //find the record
+                AllStaff.ThisStaff.Find(PrimaryKey);
 
-                    //test to see that the two values are the same
-                    Assert.AreEqual(AllStaff.ThisStaff, TestItem);
-                }
+                //test to see that the two values are the same
+                Assert.AreEqual(AllStaff.ThisStaff, TestItem);
             }
         }
     }

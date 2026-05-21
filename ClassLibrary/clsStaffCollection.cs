@@ -2,12 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ClassLibrary
 {
- public class clsStaffCollection
+    public class clsStaffCollection
     {
+        //private data member for the list
         List<clsStaff> mStaffList = new List<clsStaff>();
+        //private member of data for thisstaff
+        clsStaff mThisStaff = new clsStaff();
+
         public clsStaffCollection()
         {
             //variables for the index and record count
@@ -62,11 +67,38 @@ namespace ClassLibrary
         }
 
 
-        public clsStaff ThisStaff { get; set; }
+        //public property for ThisStaff
+        public clsStaff ThisStaff
+        {
+            get
+            {
+                //return the private data
+                return mThisStaff;
+            }
+            set
+            {
+                //set the private data
+                mThisStaff = value;
+            }
+        }
 
         public int Add()
         {
-            throw new NotImplementedException();
+            //adds a record to the database based on the values of mThisStaff
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+
+            //set the parameters for the stored procedure
+            DB.AddParameter("@StaffID", mThisStaff.StaffID);
+            DB.AddParameter("@StaffName", mThisStaff.StaffName);
+            DB.AddParameter("@StaffRole", mThisStaff.StaffRole);
+            DB.AddParameter("@StaffPhoneNo", mThisStaff.StaffPhoneNo);
+            DB.AddParameter("@StaffClockIn", mThisStaff.StaffClockIn);
+            DB.AddParameter("@StaffDateOfHire", mThisStaff.StaffDateofHire);
+            DB.AddParameter("@StaffAddress", mThisStaff.StaffAddress);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblStaff_Insert");
         }
     }
 }
