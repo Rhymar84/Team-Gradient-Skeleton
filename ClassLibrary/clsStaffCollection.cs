@@ -64,6 +64,10 @@ namespace ClassLibrary
 
         public clsStaff ThisStaff { get; set; }
 
+        public int Add()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
