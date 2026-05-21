@@ -87,5 +87,13 @@ namespace ClassLibrary
             DB.AddParameter("@ExpressShipping", ThisOrder.ExpressShipping);
             DB.AddParameter("@Subtotal", ThisOrder.Subtotal);
         }
+
+        public void Delete()
+        {
+            ///deletes the record pointed to by ThisOrder
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderNo", ThisOrder.OrderNo);
+            DB.Execute("sproc_tblOrders_Delete");
+        }
     }
 }
