@@ -697,6 +697,41 @@ namespace Testing1
             Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void FilterByAddressMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress(""); //empty string filter should keep all records
+            //assert all records are present
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+
+        }
+
+        [TestMethod]
+        public void FilterByAddressNoneFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress("]akjsoifjhi"); //filter for address that doesn't exist
+            //should be no records
+            Assert.AreEqual(0, FilteredOrders.Count);
+
+        }
+
+        [TestMethod]
+        public void FilterByAddressDataFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress("Green Lane"); //filter for test data
+            //should be 2 records
+            Assert.IsTrue(FilteredOrders.Count == 2);
+            Assert.IsTrue(FilteredOrders.OrderList[0].OrderNo == 78); //references test data in table
+            Assert.IsTrue(FilteredOrders.OrderList[1].OrderNo == 79);
+
+        }
     }
 
     
