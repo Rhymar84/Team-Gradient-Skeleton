@@ -102,7 +102,7 @@ namespace ClassLibrary
         }
 
         //private data member for the Staff ID property
-        private Int32 mStaffID;
+        private int mStaffID;
         public int StaffID
         {
             get
