@@ -94,7 +94,7 @@ namespace Testing1
             //create bool to store result of validation
             Boolean Found = false;
             //create some test data
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             //invoke method
             Found = AnOrder.Find(OrderNo);
             //check if result exists
@@ -110,10 +110,10 @@ namespace Testing1
             //create bool to record if data is good
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
             //check the order no.
-            if (AnOrder.OrderNo == 7)
+            if (AnOrder.OrderNo == 78)
             {
                 OK = true;
             }
@@ -129,7 +129,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.DateOrdered == Convert.ToDateTime("02/04/2026"))
@@ -147,7 +147,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.ShippingAddress == "139 Green Lane, Leicester, Leicestershire, L43 3ZT")
@@ -165,7 +165,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.OrderStatus == "delivered")
@@ -183,7 +183,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.DeliveryInstructions == "none given")
@@ -201,7 +201,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.ExpressShipping == true)
@@ -219,7 +219,7 @@ namespace Testing1
             Boolean Found = false;
             Boolean OK = false;
 
-            Int32 OrderNo = 7;
+            Int32 OrderNo = 78;
             Found = AnOrder.Find(OrderNo);
 
             if (AnOrder.Subtotal == 1399.99m)
@@ -638,7 +638,7 @@ namespace Testing1
             TestItem.DeliveryInstructions = "none given";
             TestItem.Subtotal = 289.99m;
             //add item to collection
-            AllOrders.ThisOrder = TestItem;
+            AllOrders.SetOrder(TestItem);
             //add the record
             PrimaryKey = AllOrders.Add();
             //Get primary key and search for it
@@ -649,8 +649,6 @@ namespace Testing1
             TestItem.DeliveryInstructions = "put in parcel box";
             //set record based on new data
             AllOrders.SetOrder(TestItem);
-            //AllOrders.ThisOrder = TestItem;
-            Console.WriteLine(TestItem.ShippingAddress);
             //invoke update method
             AllOrders.Update();
             //find record
@@ -660,6 +658,79 @@ namespace Testing1
             Console.WriteLine(TestItem.ShippingAddress);
             Assert.IsTrue(AllOrders.ThisOrder.Equals(TestItem));
             //Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create test data
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey;
+            //set properties
+            TestItem.DateOrdered = DateTime.Now;
+            TestItem.ShippingAddress = "12 Down Street";
+            TestItem.ExpressShipping = false;
+            TestItem.OrderStatus = "delivered";
+            TestItem.OrderNo = 18;
+            TestItem.DeliveryInstructions = "none given";
+            TestItem.Subtotal = 289.99m;
+            //add item to collection
+            AllOrders.SetOrder(TestItem);
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //Get primary key and search for it
+            TestItem.OrderNo = PrimaryKey;
+            //modify the test data
+            TestItem.ShippingAddress = "16 Down Avenue";
+            TestItem.OrderStatus = "cancelled";
+            TestItem.DeliveryInstructions = "put in parcel box";
+            //set record based on new data
+            AllOrders.SetOrder(TestItem);
+            //add record
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderNo = PrimaryKey;
+            //find and delete record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            AllOrders.Delete();
+            //try to find again
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void FilterByAddressMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress(""); //empty string filter should keep all records
+            //assert all records are present
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+
+        }
+
+        [TestMethod]
+        public void FilterByAddressNoneFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress("]akjsoifjhi"); //filter for address that doesn't exist
+            //should be no records
+            Assert.AreEqual(0, FilteredOrders.Count);
+
+        }
+
+        [TestMethod]
+        public void FilterByAddressDataFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection(); //filtered version
+            FilteredOrders.FilterByAddress("Green Lane"); //filter for test data
+            //should be 2 records
+            Assert.IsTrue(FilteredOrders.Count == 2);
+            Assert.IsTrue(FilteredOrders.OrderList[0].OrderNo == 78); //references test data in table
+            Assert.IsTrue(FilteredOrders.OrderList[1].OrderNo == 79);
+
         }
     }
 
