@@ -8,8 +8,20 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the customer to be processed
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        //if this is not a new record
+        if (IsPostBack == false)
+        {
+            if (CustomerID != -1)
+            {
+                //display the current data for the record
+                DisplayCustomers();
+            }
+        }
         
     }
 
@@ -18,29 +30,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of the clsCustomer
         clsCustomer ACustomer = new clsCustomer();
         //capture data
-        ACustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
-        ACustomer.CustomerName = txtCustomerName.Text;
-        ACustomer.CustomerEmail = txtCustomerEmail.Text;
-        ACustomer.CustomerPhoneNo = txtCustomerPhoneNo.Text;
-        ACustomer.CustomerAddress = txtCustomerAddress.Text;
-        ACustomer.CustomerDateRegistered = Convert.ToDateTime(DateTime.Now);
-        ACustomer.CustomerIsVerified = chkCustomerIsVerified.Checked;
+        string customerName = txtCustomerName.Text;
+        string customerEmail = txtCustomerEmail.Text;
+        string customerPhoneNo = txtCustomerPhoneNo.Text;
+        string customerAddress = txtCustomerAddress.Text;
+        string customerDateRegistered = txtCustomerDateRegistered.Text;
+        
 
-        string Error = ACustomer.Valid(ACustomer.CustomerName, ACustomer.CustomerEmail, ACustomer.CustomerPhoneNo, ACustomer.CustomerAddress, ACustomer.CustomerDateRegistered.ToString());
+        string Error = ACustomer.Valid(customerName, customerEmail, customerPhoneNo, customerAddress, customerDateRegistered);
         if (Error == "")
         {
             //capture data
-            ACustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+            ACustomer.CustomerID = CustomerID;
             ACustomer.CustomerName = txtCustomerName.Text;
             ACustomer.CustomerEmail = txtCustomerEmail.Text;
             ACustomer.CustomerPhoneNo = txtCustomerPhoneNo.Text;
             ACustomer.CustomerAddress = txtCustomerAddress.Text;
-            ACustomer.CustomerDateRegistered = Convert.ToDateTime(DateTime.Now);
+            ACustomer.CustomerDateRegistered = Convert.ToDateTime(txtCustomerDateRegistered.Text);
             ACustomer.CustomerIsVerified = chkCustomerIsVerified.Checked;
-            //store the customer name in the session object
-            Session["ACustomer"] = ACustomer;
-            //navigate to the view page
-            Response.Redirect("CustomersViewer.aspx");
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //if this is a new record i.e. CustomerID = -1 then add the data
+            if (CustomerID == -1)
+             {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //update the record
+                CustomerList.Update();
+            }
+            //redirect to the list page
+            Response.Redirect("CustomersList.aspx");
         }
         else
         {
@@ -73,4 +102,53 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkCustomerIsVerified.Checked = ACustomer.CustomerIsVerified;
         }
     }
+  
+
+
+    void DisplayCustomers()
+    {
+        // create a direct instance of clsCustomer (same as btnFind_Click)
+        clsCustomer ACustomer = new clsCustomer();
+
+        // find the record
+        Boolean Found = ACustomer.Find(CustomerID);
+
+        if (Found)
+        {
+            txtCustomerID.Text = ACustomer.CustomerID.ToString();
+            txtCustomerName.Text = ACustomer.CustomerName;
+            txtCustomerEmail.Text = ACustomer.CustomerEmail;
+            txtCustomerPhoneNo.Text = ACustomer.CustomerPhoneNo;
+            txtCustomerAddress.Text = ACustomer.CustomerAddress;
+            txtCustomerDateRegistered.Text = ACustomer.CustomerDateRegistered.ToString("dd/MM/yyyy");
+            chkCustomerIsVerified.Checked = ACustomer.CustomerIsVerified;
+        }
+    }
+    protected void txtCustomerDateRegistered_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
+
+
+/*void DisplayCustomers()
+  {
+      clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+      bool Found = CustomerList.ThisCustomer.Find(CustomerID);
+
+      if (Found)
+      {
+          txtCustomerID.Text = CustomerList.ThisCustomer.CustomerID.ToString();
+          txtCustomerName.Text = CustomerList.ThisCustomer.CustomerName;
+          txtCustomerEmail.Text = CustomerList.ThisCustomer.CustomerEmail;
+          txtCustomerPhoneNo.Text = CustomerList.ThisCustomer.CustomerPhoneNo;
+          txtCustomerAddress.Text = CustomerList.ThisCustomer.CustomerAddress;
+          txtCustomerDateRegistered.Text = CustomerList.ThisCustomer.CustomerDateRegistered.ToString();
+          chkCustomerIsVerified.Checked = CustomerList.ThisCustomer.CustomerIsVerified;
+      }
+      else
+      {
+          lblError.Text = "Customer not found.";
+      }
+  }*/

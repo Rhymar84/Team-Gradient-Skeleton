@@ -165,11 +165,14 @@ namespace ClassLibrary
             DateTime DateComp = DateTime.Now.Date;
             try
             {
-                DateTemp = Convert.ToDateTime(customerDateRegistered);
+                // convert and strip the time portion
+                DateTemp = Convert.ToDateTime(customerDateRegistered).Date;
+
                 if (DateTemp < DateComp)
                 {
                     Error += "The date cannot be in the past : ";
                 }
+
                 if (DateTemp > DateComp)
                 {
                     Error += "The date cannot be in the future : ";
@@ -179,33 +182,34 @@ namespace ClassLibrary
             {
                 Error += "The date was not a valid date : ";
             }
-                /*if (string.IsNullOrWhiteSpace(customerDateRegistered))
+
+            /*if (string.IsNullOrWhiteSpace(customerDateRegistered))
+            {
+                Error += "The date may not be blank : ";
+            }
+            else
+            {
+                try
                 {
-                    Error += "The date may not be blank : ";
+                    DateTemp = Convert.ToDateTime(customerDateRegistered);
+
+                    if (DateTemp < DateTime.Now.Date)
+                    {
+                        Error += "The date cannot be in the past : ";
+                    }
+
+                    if (DateTemp > DateTime.Now.Date)
+                    {
+                        Error += "The date cannot be in the future : ";
+                    }
                 }
-                else
+                catch
                 {
-                    try
-                    {
-                        DateTemp = Convert.ToDateTime(customerDateRegistered);
-
-                        if (DateTemp < DateTime.Now.Date)
-                        {
-                            Error += "The date cannot be in the past : ";
-                        }
-
-                        if (DateTemp > DateTime.Now.Date)
-                        {
-                            Error += "The date cannot be in the future : ";
-                        }
-                    }
-                    catch
-                    {
-                        Error += "The date was not a valid date : ";
-                    }
-                }*/
-                //-----------------Email validation-----------------
-                if (customerEmail.Length == 0)
+                    Error += "The date was not a valid date : ";
+                }
+            }*/
+            //-----------------Email validation-----------------
+            if (customerEmail.Length == 0)
             {
                 Error += "The customer email may not be blank : ";
             }
