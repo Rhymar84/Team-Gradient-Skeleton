@@ -7,20 +7,22 @@ namespace Testing2
     [TestClass]
     public class tstStock
     {
-        [TestMethod]
+        // ---- Instance test ----
+        [TestMethod]
         public void InstanceOK()
         {
             clsStock anStock = new clsStock();
             Assert.IsNotNull(anStock);
         }
 
-        [TestMethod]
+        // ---- Property tests (get/set) ----
+        [TestMethod]
         public void ItemNoPropertyOK()
         {
             clsStock anStock = new clsStock();
             Int32 TestData = 1;
-            anStock.itemNo = TestData;
-            Assert.AreEqual(anStock.itemNo, TestData);
+            anStock.ItemNo = TestData;
+            Assert.AreEqual(anStock.ItemNo, TestData);
         }
 
         [TestMethod]
@@ -68,31 +70,102 @@ namespace Testing2
             Assert.AreEqual(anStock.LastDateRestocked, TestData);
         }
 
-        [TestMethod]
-
+        // ---- Find method test (basic) ----
+        [TestMethod]
         public void FindMethodOK()
         {
-            //Creating an instance of the class we want to create
             clsStock anStock = new clsStock();
-            //Create a Boolean variable to store the results of the validation
             Boolean Found = false;
-            //Create some test data to use with the method
-            Int32 StockID = 21;
-            //Invoke the method
-            Found = anStock.Find(StockID);
-            //test to see that the result is true
-            Assert.isTrue(Found);
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            Assert.IsTrue(Found);
         }
 
-        [TestMethod]
+        // ---- "Found" tests (each attribute gets set correctly by Find) ----
+        [TestMethod]
         public void TestItemNoFound()
         {
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 itemNo = 1;
-            Found = anStock.Find(itemNo);
-            if (anStock.itemNo != itemNo)
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.ItemNo != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestModelNameFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.ModelName != "Test Model")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.Price != "19.99")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.Quantity != 50)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInStockFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.InStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestLastDateRestockedFound()
+        {
+            clsStock anStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 ItemNo = 21;
+            Found = anStock.Find(ItemNo);
+            if (anStock.LastDateRestocked != new DateTime(2024, 1, 15))
             {
                 OK = false;
             }
