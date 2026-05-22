@@ -242,5 +242,10 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
+
+        public void Add(clsStaff testItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
