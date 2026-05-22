@@ -52,17 +52,23 @@ namespace ClassLibrary
         // Find method – uses dummy data for testing (record with ItemNo = 21)
         public bool Find(int itemNo)
         {
-            if (itemNo == 21)
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemNo", ItemNo);
+            DB.Execute("sproc_tblStock_FilterByItemNo");
+            if (DB.Count == 1)
             {
-                mItemNo = 21;
-                mModelName = "Test Model";
-                mPrice = "19.99";
-                mQuantity = 50;
-                mInStock = true;
-                mLastDateRestocked = new DateTime(2024, 1, 15);
+                mItemNo = Convert.ToInt32(DB.DataTable.Rows[0]["ItemNo"]);
+                mModelName = Convert.ToString(DB.DataTable.Rows[0]["ModelName"]);
+                mPrice = Convert.ToString(DB.DataTable.Rows[0]["Price"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
+                mLastDateRestocked = Convert.ToDateTime(DB.DataTable.Rows[0]["LastDateRestocked"]);
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }
