@@ -37,6 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //capture data
             AnOrder.OrderNo = OrderNo;
+            Console.WriteLine(txtDateOrdered.Text);
             AnOrder.DateOrdered = Convert.ToDateTime(txtDateOrdered.Text);
             AnOrder.ShippingAddress = txtShippingAddress.Text;
             AnOrder.OrderStatus = txtOrderStatus.Text;
@@ -109,7 +110,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderList.ThisOrder.Find(OrderNo);
         //display in form
         txtOrderNo.Text = OrderList.ThisOrder.OrderNo.ToString();
-        txtDateOrdered.Text = OrderList.ThisOrder.DateOrdered.ToString();
+        txtDateOrdered.Text = OrderList.ThisOrder.DateOrdered.Date.ToString("yyyy-MM-dd");
         txtShippingAddress.Text = OrderList.ThisOrder.ShippingAddress.ToString();
         txtOrderStatus.Text = OrderList.ThisOrder.OrderStatus.ToString();
         txtDeliveryInstructions.Text = OrderList.ThisOrder.DeliveryInstructions.ToString();

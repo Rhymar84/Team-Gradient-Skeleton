@@ -41,7 +41,7 @@
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 39px; top: 355px; position: absolute" TabIndex="8" Text="OK" />
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 117px; top: 355px; position: absolute" TabIndex="9" Text="Cancel" />
         </p>
-        <asp:TextBox ID="txtDateOrdered" runat="server" style="z-index: 1; left: 163px; top: 73px; position: absolute" TabIndex="2"></asp:TextBox>
+        <asp:TextBox ID="txtDateOrdered" runat="server" style="z-index: 1; left: 163px; top: 73px; position: absolute" TabIndex="2" TextMode="Date"></asp:TextBox>
         <p>
             <asp:TextBox ID="txtShippingAddress" runat="server" style="z-index: 1; left: 163px; top: 111px; position: absolute" TabIndex="3"></asp:TextBox>
         </p>
