@@ -10,8 +10,14 @@ public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (IsPostBack == false)
         {
+            if (Convert.ToString(Session["Login"]) == "") //redirect to login if not logged in
+            {
+                Response.Redirect("OrdersLogin.aspx");
+                return;
+            }
             DisplayOrders();
         }
     }
