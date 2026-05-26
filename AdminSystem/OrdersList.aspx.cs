@@ -13,12 +13,14 @@ public partial class _1_List : System.Web.UI.Page
         
         if (IsPostBack == false)
         {
-            if (Convert.ToString(Session["Login"]) == "") //redirect to login if not logged in
+            clsOrdersUser AUser = (clsOrdersUser)Session["Login"];
+            if (AUser == null) //redirect to login if not logged in
             {
                 Response.Redirect("OrdersLogin.aspx");
                 return;
             }
             DisplayOrders();
+            lblLogin.Text = "Logged in as: " + AUser.UserName;
         }
     }
 

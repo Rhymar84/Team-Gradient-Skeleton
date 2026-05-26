@@ -15,7 +15,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderNo = Convert.ToInt32(Session["OrderNo"]);
         if (IsPostBack == false)
         {
-            if (Convert.ToString(Session["Login"]) == "") //redirect to login if not logged in
+            if ((clsOrdersUser)Session["Login"] == null) //redirect to login if not logged in
             {
                 Response.Redirect("OrdersLogin.aspx");
                 return;
