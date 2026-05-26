@@ -117,4 +117,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         chkExpressShipping.Checked = OrderList.ThisOrder.ExpressShipping;
         txtSubtotal.Text = OrderList.ThisOrder.Subtotal.ToString();
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
+    }
 }

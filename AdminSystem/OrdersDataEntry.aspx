@@ -39,7 +39,7 @@
         <p>
             <asp:Label ID="lblShippingAddress" runat="server" style="z-index: 1; left: 11px; top: 112px; position: absolute" Text="Shipping Address" width="123px"></asp:Label>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 39px; top: 355px; position: absolute" TabIndex="8" Text="OK" />
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 117px; top: 355px; position: absolute" TabIndex="9" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 117px; top: 355px; position: absolute" TabIndex="9" Text="Cancel" OnClick="btnCancel_Click" />
         </p>
         <asp:TextBox ID="txtDateOrdered" runat="server" style="z-index: 1; left: 163px; top: 73px; position: absolute" TabIndex="2" TextMode="Date"></asp:TextBox>
         <p>
