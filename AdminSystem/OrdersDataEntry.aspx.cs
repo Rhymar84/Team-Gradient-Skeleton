@@ -15,6 +15,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderNo = Convert.ToInt32(Session["OrderNo"]);
         if (IsPostBack == false)
         {
+            if ((clsOrdersUser)Session["Login"] == null) //redirect to login if not logged in
+            {
+                Response.Redirect("OrdersLogin.aspx");
+                return;
+            }
+
             if (OrderNo != -1) //Not a new record
             {
                 DisplayOrder();
@@ -116,5 +122,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtDeliveryInstructions.Text = OrderList.ThisOrder.DeliveryInstructions.ToString();
         chkExpressShipping.Checked = OrderList.ThisOrder.ExpressShipping;
         txtSubtotal.Text = OrderList.ThisOrder.Subtotal.ToString();
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
     }
 }
