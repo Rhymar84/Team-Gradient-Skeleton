@@ -8,7 +8,7 @@ namespace Testing4
     [TestClass]
     public class tstStaffCollection
     {
-    
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -43,7 +43,7 @@ namespace Testing4
             //test to see that the two values are the same
             Assert.AreEqual(AllStaff.StaffList, TestList); ;
         }
-  
+
 
         [TestMethod]
         public void ListAndCountOK()
@@ -90,7 +90,7 @@ namespace Testing4
             Assert.AreEqual(AllStaff.ThisStaff, TestStaff);
         }
 
-            [TestClass]
+        [TestClass]
         public class AddMethodTests
         {
             [TestMethod]
@@ -208,36 +208,61 @@ namespace Testing4
                 //test to see that the record was not found
                 Assert.IsFalse(Found);
             }
+        }
+        [TestClass]
+        public class FilterMethodTests
+        {
 
-            [TestClass]
-            public class FilterMethodTests
+            [TestMethod]
+
+            public void ReportByStaffNameMethodOK()
             {
 
-                [TestMethod]
-                public void ReportByStaffNameMethodOK()
+                //create an instance of the class containing unfiltered results
+                clsStaffCollection AllStaff = new clsStaffCollection();
+                //create an instance of the filtered data
+                clsStaffCollection FilteredStaff = new clsStaffCollection();
+                //apply a blank string (should return all records)
+                FilteredStaff.ReportByStaffName("");
+                //test to see that the two values are the same
+                Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+            }
+            [TestMethod]
+
+            public void ReportByStaffNameNoneFound()
+            {
+                //create an instance of the filtered data
+                clsStaffCollection FilteredStaff = new clsStaffCollection();
+                //apply a staff name that doesn't exist
+                FilteredStaff.ReportByStaffName("xxxxxx");
+                //test to see that there are no records
+                Assert.AreEqual(0, FilteredStaff.Count);
+            }
+            [TestMethod]
+
+            public void ReportByStaffNameTestDataFound()
+            {
+                //create an instance of the filtered data
+                clsStaffCollection FilteredStaff = new clsStaffCollection();
+                //variable to store the outcome
+                Boolean OK = true;
+                //apply a staff name that doesn't exist
+                FilteredStaff.ReportByStaffName("Tyson Granger");
+                //check that the correct number of records are found
+                if (FilteredStaff.Count == 1)
                 {
-
-                    //create an instance of the class containing unfiltered results
-                    clsStaffCollection AllStaff = new clsStaffCollection();
-                    //create an instance of the filtered data
-                    clsStaffCollection FilteredStaff = new clsStaffCollection();
-                    //apply a blank string (should return all records)
-                    FilteredStaff.ReportByStaffName("");
-                    //test to see that the two values are the same
-                    Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
-
+                    //check that the first record is ID 2893410
+                    if (FilteredStaff.StaffList[0].StaffID != 2893410)
+                    {
+                        OK = false;
+                    }
                 }
-                [TestMethod]
-                public void ReportByStaffNameNoneFound()
+                else
                 {
-                    //create an instance of the filtered data
-                    clsStaffCollection FilteredStaff = new clsStaffCollection();
-                    //apply a name that doesn't exist
-                    FilteredStaff.ReportByStaffName("This is not a name");
-                    //test to see that there are no records
-                    Assert.AreEqual(0, FilteredStaff.Count);
+                    OK = false;
                 }
             }
+
         }
     }
 }

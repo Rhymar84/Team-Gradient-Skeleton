@@ -31,6 +31,16 @@
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 172px; top: 299px; position: absolute" Text="Delete" />
         </p>
         <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblEnteraStaffName" runat="server" Text="Enter a Staff Name"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="txtStaffName0" runat="server" style="z-index: 1; left: 127px; top: 228px; position: absolute" height="22px" width="128px"></asp:TextBox>
+        <asp:TextBox ID="txtStaffName1" runat="server" style="z-index: 1; left: 127px; top: 228px; position: absolute" height="22px" width="128px"></asp:TextBox>
+            &nbsp;<asp:TextBox ID="TextBox1" runat="server" Height="22px"></asp:TextBox>
+        </p>
+        <p>
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
     </form>

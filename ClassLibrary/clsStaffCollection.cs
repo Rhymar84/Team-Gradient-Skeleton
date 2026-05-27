@@ -25,24 +25,8 @@ namespace ClassLibrary
             //populate the array list with the data table
             PopulateArray(DB);
             //get the count of records returned
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //blank address
-                clsStaff AStaff = new clsStaff();
-                AStaff.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
-                AStaff.StaffName = Convert.ToString(DB.DataTable.Rows[Index]["StaffName"]);
-                AStaff.StaffRole = Convert.ToString(DB.DataTable.Rows[Index]["StaffRole"]);
-                AStaff.StaffPhoneNo = Convert.ToString(DB.DataTable.Rows[Index]["StaffPhoneNo"]);
-                AStaff.StaffAddress = Convert.ToString(DB.DataTable.Rows[Index]["StaffAddress"]);
-                AStaff.StaffDateofHire = Convert.ToDateTime(DB.DataTable.Rows[Index]["StaffDateofHire"]);
-                //add the record to the private data member
-                mStaffList.Add(AStaff);
-                Index++;
-
-            }
         }
+        
 
         public List<clsStaff> StaffList
         {

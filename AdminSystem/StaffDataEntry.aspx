@@ -24,6 +24,9 @@
             <asp:TextBox ID="txtStaffPhoneNo" runat="server" style="z-index: 1; left: 121px; top: 135px; position: absolute" height="22px" width="128px"></asp:TextBox>
             <asp:TextBox ID="txtStaffDateofHire" runat="server" style="z-index: 1; left: 121px; top: 184px; position: absolute" height="22px" width="128px"></asp:TextBox>
         </p>
+        <p>
+        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 30px; top: 331px; position: absolute; width: 31px;" Text="Ok" OnClick="btnOk_Click" />
+        </p>
         <asp:Label ID="lblStaffName" runat="server" style="z-index: 1; left: 9px; top: 227px; position: absolute; height: 29px;" Text="StaffName" width="99px"></asp:Label>
         <asp:TextBox ID="txtStaffName" runat="server" style="z-index: 1; left: 127px; top: 228px; position: absolute" height="22px" width="128px"></asp:TextBox>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 99px; top: 333px; position: absolute; height: 21px" Text="Cancel" />
@@ -32,9 +35,6 @@
             <asp:Label ID="lblDateofHire" runat="server" style="z-index: 1; left: 9px; top: 183px; position: absolute" Text="StaffDateOfHire" height="19px" width="99px"></asp:Label>
         </p>
         <asp:CheckBox ID="chkStaffClockIn" runat="server" style="z-index: 1; left: 130px; top: 267px; position: absolute" Text="StaffClockIn" />
-        <p>
-        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 30px; top: 331px; position: absolute; width: 31px;" Text="Ok" OnClick="btnOk_Click" />
-        </p>
     </form>
 </body>
 </html>

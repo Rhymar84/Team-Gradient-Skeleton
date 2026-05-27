@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,4 +16,20 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //get the number of the address to be deleted from the session object
         Int32 StaffID = Convert.ToInt32(Session["StaffID"]);
     }
+    protected void btnYes_Click(object sender, EventArgs e)
+    {
+        //create a new instance of the staff collection class
+        clsStaffCollection Staff = new clsStaffCollection();
+        //delete the record
+        Staff.Delete();
+        //redirect back to the main page
+        Response.Redirect("StaffList.aspx");
+    }
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        //redirect back to the main page
+        Response.Redirect("StaffList.aspx");
+    }
 }
+
+
