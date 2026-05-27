@@ -140,6 +140,8 @@ namespace Testing4
                 Assert.IsTrue(Found);
 
             }
+            [TestMethod]
+
             public void TestStaffIDPropertyOK()
             {
                 //create an instance of the class we want to create
@@ -160,6 +162,8 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
+            [TestMethod]
+
             public void TestDateofHireFound()
             {
                 //create an instance of the class we want to create
@@ -180,7 +184,7 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
-
+            [TestMethod]
             public void TestStaffPhoneNoFound()
             {
 
@@ -202,6 +206,7 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
+            [TestMethod]
 
             public void TestStaffNameFound()
             {
@@ -224,6 +229,7 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
+            [TestMethod]
             public void TestStaffRoleFound()
             {
 
@@ -244,7 +250,9 @@ namespace Testing4
                 }
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
+
             }
+            [TestMethod]
             public void TestStaffAddressFound()
             {
 
@@ -266,6 +274,7 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.IsTrue(OK);
             }
+            [TestMethod]
             public void TestStaffClockInFound()
             {
 
@@ -741,4 +750,3 @@ namespace Testing4
         }
     }
 }
-
