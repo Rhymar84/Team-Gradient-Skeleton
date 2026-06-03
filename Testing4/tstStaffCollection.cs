@@ -143,7 +143,7 @@ namespace Testing4
                 AllStaff.Update();
                 AllStaff.ThisStaff.Find(PrimaryKey);
                 Assert.AreEqual(AllStaff.ThisStaff, TestItem);
-                //cleanup - delete the test record
+                //Cleanup Crew - exterminate
                 AllStaff.ThisStaff.Find(PrimaryKey);
                 AllStaff.Delete();
             }
