@@ -15,9 +15,7 @@ namespace ClassLibrary
 
         public clsStaffCollection()
         {
-            //variables for the index and record count
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
+            //variables for the index and record count  
             //object for data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure

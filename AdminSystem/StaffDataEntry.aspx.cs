@@ -73,6 +73,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 StaffList.ThisStaff = AStaff;
                 //add the new record
                 StaffList.Add();
+                //add an entry to the audit log
+                clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
+                AuditLog.StaffID = StaffID;
+                AuditLog.Action = "Add";
+                AuditLog.Timestamp = DateTime.Now;
+                AuditLog.PerformedBy = "Admin";
+                AuditLog.AuditLogs();
             }
             //otherwise it must be an update
             else
@@ -83,7 +90,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 StaffList.ThisStaff = AStaff;
                 //update the record
                 StaffList.Update();
+                //add an entry to the audit log
+                clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
+                AuditLog.StaffID = StaffID;
+                AuditLog.Action = "Add";
+                AuditLog.Timestamp = DateTime.Now;
+                AuditLog.PerformedBy = "Admin";
+                AuditLog.AuditLogs();
             }
+
             //redirect back to the list page
             Response.Redirect("StaffList.aspx");
         }
