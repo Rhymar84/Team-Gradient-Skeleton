@@ -90,10 +90,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 StaffList.ThisStaff = AStaff;
                 //update the record
                 StaffList.Update();
-                //add an entry to the audit log
+                //update an entry to the audit log
                 clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
                 AuditLog.StaffID = StaffID;
-                AuditLog.Action = "Add";
+                AuditLog.Action = "Update";
                 AuditLog.Timestamp = DateTime.Now;
                 AuditLog.PerformedBy = "Admin";
                 AuditLog.AuditLogs();
@@ -114,7 +114,33 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create an instance of the staff class
         clsStaff AStaff = new clsStaff();
+        Int32 StaffID;
+        try
+        {
+            StaffID = Convert.ToInt32(txtStaffID.Text);
+        }
+        catch (FormatException)
+        {
+            lblError.Text = "Invalid Staff ID.";
+            return;
+        }
 
+        //search for record
+        if (AStaff.Find(StaffID) == true)
+        {
+            //display values in form
+            txtStaffName.Text = AStaff.StaffName;
+            txtStaffRole.Text = AStaff.StaffRole;
+            txtStaffAddress.Text = AStaff.StaffAddress;
+            txtStaffPhoneNo.Text = AStaff.StaffPhoneNo;
+            txtStaffDateofHire.Text = AStaff.StaffDateofHire.ToString();
+            chkStaffClockIn.Checked = AStaff.StaffClockIn;
+            lblError.Text = "";
+        }
+        else
+        {
+            lblError.Text = "No record found.";
+        }
     }
 
     void DisplayStaff()

@@ -24,7 +24,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //add an entry to the audit log
         clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
         AuditLog.StaffID = StaffID;
-        AuditLog.Action = "Add";
+        AuditLog.Action = "Delete";
         AuditLog.Timestamp = DateTime.Now;
         AuditLog.PerformedBy = "Admin";
         AuditLog.AuditLogs();
