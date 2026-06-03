@@ -749,5 +749,56 @@ namespace Testing4
                 Assert.AreEqual(Error, "");
             }
         }
+        public class clsAuditLogTests
+        {
+            [TestMethod]
+            public void StaffIDPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsStaffAuditLogs aLog = new clsStaffAuditLogs();
+                //create some test data to assign to the property
+                int TestData = 105;
+                //assign the data to the property
+                aLog.StaffID = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(aLog.StaffID, TestData);
+            }
+            [TestMethod]
+            public void ActionPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsStaffAuditLogs aLog = new clsStaffAuditLogs();
+                //create some test data to assign to the property
+                string TestData = "Added new staff member";
+                //assign the data to the property
+                aLog.Action = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(aLog.Action, TestData);
+            }
+            [TestMethod]
+            public void TimestampPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsStaffAuditLogs aLog = new clsStaffAuditLogs();
+                //create some test data to assign to the property
+                DateTime TestData = DateTime.Now;
+                //assign the data to the property
+                aLog.Timestamp = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(aLog.Timestamp, TestData);
+            }
+            [TestMethod]
+            public void PerformedByPropertyOK()
+            {
+                //create an instance of the class we want to create
+                clsStaffAuditLogs aLog = new clsStaffAuditLogs();
+                //create some test data to assign to the property
+                string TestData = "Admin User";
+                //assign the data to the property
+                aLog.PerformedBy = TestData;
+                //test to see that the two values are the same
+                Assert.AreEqual(aLog.PerformedBy, TestData);
+            }
+        }
     }
 }

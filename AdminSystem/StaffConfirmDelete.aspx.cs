@@ -17,9 +17,18 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
-        clsStaffCollection AllStaff = new clsStaffCollection();
-        AllStaff.ThisStaff.Find(StaffID);
-        AllStaff.Delete();
+        //create a new instance of the staff collection class
+        clsStaffCollection Staff = new clsStaffCollection();
+        //delete the record
+        Staff.Delete();
+        //add an entry to the audit log
+        clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
+        AuditLog.StaffID = StaffID;
+        AuditLog.Action = "Add";
+        AuditLog.Timestamp = DateTime.Now;
+        AuditLog.PerformedBy = "Admin";
+        AuditLog.AuditLogs();
+        //redirect back to the main page
         Response.Redirect("StaffList.aspx");
     }
 
