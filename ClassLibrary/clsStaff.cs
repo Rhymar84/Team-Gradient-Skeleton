@@ -208,7 +208,14 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "This isn't a valid phone number: ";
             }
-            if (staffPhoneNo.Length <6)
+            //if the staff phone No is too short
+            if (staffPhoneNo.Length <7)
+            {
+                //record the error
+                Error = Error + "Please enter a valid phone number: ";
+            }
+            //if the staff phone No is blank
+            if (staffPhoneNo.Length == 0)
             {
                 //record the error
                 Error = Error + "Please enter a valid phone number: ";
@@ -220,7 +227,14 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "This isn't a valid address:";
             }
+            //if the staff address is blank
             if (staffAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "Please enter a valid address: ";
+            }
+            //if the staff address is too short
+            if (staffAddress.Length < 6)
             {
                 //record the error
                 Error = Error + "Please enter a valid address: ";
@@ -238,7 +252,12 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "Please enter a valid staff role: ";
             }
-
+            //if the staff role is too short
+            if (staffRole.Length < 3)
+            {
+                //record the error
+                Error = Error + "Please enter a valid staff role: ";
+            }
             //return any error messages
             return Error;
         }
