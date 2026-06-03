@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 namespace ClassLibrary
 {
     public class clsStaffUser
@@ -32,10 +34,15 @@ namespace ClassLibrary
 
         public bool FindUser(string UserName, string Password)
         {
+            Password = HashPassword(Password);
+
             clsDataConnection DB = new clsDataConnection();
+
             DB.AddParameter("@UserName", UserName);
             DB.AddParameter("@Password", Password);
+
             DB.Execute("sproc_tblUsers_FindUserNamePW");
+
             if (DB.Count == 1)
             {
                 mUserID = Convert.ToInt32(DB.DataTable.Rows[0]["UserID"]);
@@ -49,8 +56,17 @@ namespace ClassLibrary
                 return false;
             }
         }
+        public string HashPassword(string Password)
+        {
+            // Initialize a SHA256 hash object.
+            using (SHA256 mySHA256 = SHA256.Create())
+            {
+                // Compute the hash of the password
+                byte[] hashValue = mySHA256.ComputeHash(Encoding.UTF8.GetBytes(Password));
+                return Convert.ToBase64String(hashValue);
+            }
+        }
     }
 }
-
 
 

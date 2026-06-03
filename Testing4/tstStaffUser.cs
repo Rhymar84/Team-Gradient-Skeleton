@@ -65,20 +65,29 @@ namespace Testing4
         public void TestUserNamePWFound()
         {
             clsStaffUser AnUser = new clsStaffUser();
-            Boolean Found = false;
-            Boolean OK = true;
+
             string userName = "Marwan";
             string password = "Password11";
-            Found = AnUser.FindUser(userName, password);
-            // temporary debug - show what came back
+
+            AnUser.FindUser(userName, password);
+
             Assert.AreEqual(userName, AnUser.UserName);
-            Assert.AreEqual(password, AnUser.Password);
-            if (AnUser.UserName != userName && AnUser.Password != password)
-            {
-                OK = false;
-            }
-            Assert.IsTrue(OK);
+            Assert.AreEqual(
+                AnUser.HashPassword(password),
+                AnUser.Password
+            );
+        }
+        [TestMethod]
+        public void GenerateHashOK()
+        {
+            clsStaffUser AnUser = new clsStaffUser();
+
+            string hash = AnUser.HashPassword("Password11");
+
+            Assert.AreEqual(
+                "VCy6t5mquujHs81XHmxzOVUV69hgRDWMw2A9jpZYgeA=",
+                hash
+            );
         }
     }
 }
-
