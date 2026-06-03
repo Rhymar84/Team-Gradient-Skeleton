@@ -31,7 +31,7 @@
             &nbsp;</p>
         <p>
             <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click1" style="z-index: 1; left: 99px; top: 311px; position: absolute" Text="Login" />
-            <asp:Button ID="BtnCancel" runat="server" style="z-index: 1; left: 219px; top: 312px; position: absolute" Text="Cancel" />
+            <asp:Button ID="BtnCancel" runat="server" style="z-index: 1; left: 219px; top: 312px; position: absolute" Text="Cancel" OnClick="BtnCancel_Click" />
         </p>
         <p>
             &nbsp;</p>

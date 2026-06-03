@@ -252,7 +252,7 @@ namespace Testing4
                 if (FilteredStaff.Count == 1)
                 {
                     //check that the first record is ID 2893410
-                    if (FilteredStaff.StaffList[0].StaffID != 2893410)
+                    if (FilteredStaff.StaffList[0].StaffID != 105)
                     {
                         OK = false;
                     }
@@ -260,9 +260,11 @@ namespace Testing4
                 else
                 {
                     OK = false;
-                }
-            }
 
+                }
+                //test to see that there are no records
+                Assert.IsTrue(OK);
+            }
         }
     }
 }

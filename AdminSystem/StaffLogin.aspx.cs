@@ -58,4 +58,9 @@ public partial class StaffLogin : System.Web.UI.Page
             lblError.Text = "Login details are incorrect. Please try again";
         }
     }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
