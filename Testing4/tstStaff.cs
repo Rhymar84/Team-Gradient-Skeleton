@@ -221,7 +221,7 @@ namespace Testing4
                 int StaffID = 105;
                 //invoke the method
                 Found = aStaff.Find(StaffID);
-                //check the date of hire
+                //check staff name
                 if (aStaff.StaffName != "Tyson Granger")
                 {
                     OK = false;
@@ -243,8 +243,8 @@ namespace Testing4
                 int StaffID = 105;
                 //invoke the method
                 Found = aStaff.Find(StaffID);
-                //check the date of hire
-                if (aStaff.StaffID != 105)
+                //check staff role
+                if (aStaff.StaffRole != "Staff Admin")
                 {
                     OK = false;
                 }
@@ -266,7 +266,7 @@ namespace Testing4
                 int StaffID = 105;
                 //invoke the method
                 Found = aStaff.Find(StaffID);
-                //check the date of hire
+                //check staff address
                 if (aStaff.StaffAddress != "64 Zoo Lane")
                 {
                     OK = false;
@@ -288,7 +288,7 @@ namespace Testing4
                 int StaffID = 105;
                 //invoke the method
                 Found = aStaff.Find(StaffID);
-                //check the date of hire
+                //check staff clock in
                 if (aStaff.StaffClockIn != true)
                 {
                     OK = false;
@@ -301,7 +301,7 @@ namespace Testing4
         [TestClass]
         public class ValidationTests
         {
-
+            [TestMethod]
             public void ValidMethodOK()
             {
                 //create an instance of the class we want to create
@@ -529,6 +529,7 @@ namespace Testing4
                 //test to see that the result is correct
                 Assert.AreNotEqual(Error, "");
             }
+            [TestMethod]
             public void StaffDateOfHireExtremeMax()
             {
                 //create an instance of the class we want to create

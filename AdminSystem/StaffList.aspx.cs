@@ -85,11 +85,39 @@ public partial class _1_List : System.Web.UI.Page
             //redirect to the delete page
             Response.Redirect("StaffConfirmDelete.aspx");
         }
-        
-        else //if no record has been selected
-            {
-                lblError.Text = "Please select a record from the list to delete";
 
-            }
+        else //if no record has been selected
+        {
+            lblError.Text = "Please select a record from the list to delete";
+
         }
-    } 
+    }
+        protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection AllStaff = new clsStaffCollection();
+        //retrieve staff name filter from presentation layer and filter
+        AllStaff.ReportByStaffName(txtFilter.Text);
+        //set data source of list to filtered collection
+        lstStaffList.DataSource = AllStaff.StaffList;
+        lstStaffList.DataValueField = "StaffID";
+        lstStaffList.DataTextField = "StaffName";
+        lstStaffList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection AllStaff = new clsStaffCollection();
+        //filter by empty string (revert to all records)
+        AllStaff.ReportByStaffName("");
+        //clear filter text box to tidy up UI
+        txtFilter.Text = "";
+        //set data source of list to filtered collection
+        lstStaffList.DataSource = AllStaff.StaffList;
+        lstStaffList.DataValueField = "StaffID";
+        lstStaffList.DataTextField = "StaffName";
+        lstStaffList.DataBind();
+    }
+}
+
+
+

@@ -15,6 +15,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderNo = Convert.ToInt32(Session["OrderNo"]);
         if (IsPostBack == false)
         {
+            if ((clsOrdersUser)Session["Login"] == null) //redirect to login if not logged in
+            {
+                Response.Redirect("OrdersLogin.aspx");
+                return;
+            }
+
             if (OrderNo != -1) //Not a new record
             {
                 DisplayOrder();
@@ -37,6 +43,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //capture data
             AnOrder.OrderNo = OrderNo;
+            Console.WriteLine(txtDateOrdered.Text);
             AnOrder.DateOrdered = Convert.ToDateTime(txtDateOrdered.Text);
             AnOrder.ShippingAddress = txtShippingAddress.Text;
             AnOrder.OrderStatus = txtOrderStatus.Text;
@@ -109,11 +116,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
         OrderList.ThisOrder.Find(OrderNo);
         //display in form
         txtOrderNo.Text = OrderList.ThisOrder.OrderNo.ToString();
-        txtDateOrdered.Text = OrderList.ThisOrder.DateOrdered.ToString();
+        txtDateOrdered.Text = OrderList.ThisOrder.DateOrdered.Date.ToString("yyyy-MM-dd");
         txtShippingAddress.Text = OrderList.ThisOrder.ShippingAddress.ToString();
         txtOrderStatus.Text = OrderList.ThisOrder.OrderStatus.ToString();
         txtDeliveryInstructions.Text = OrderList.ThisOrder.DeliveryInstructions.ToString();
         chkExpressShipping.Checked = OrderList.ThisOrder.ExpressShipping;
         txtSubtotal.Text = OrderList.ThisOrder.Subtotal.ToString();
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
     }
 }

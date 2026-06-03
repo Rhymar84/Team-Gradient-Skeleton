@@ -96,37 +96,23 @@ namespace Testing4
             [TestMethod]
             public void AddMethodOK()
             {
-                //create an instance of the class we want to create
                 clsStaffCollection AllStaff = new clsStaffCollection();
-
-                //create the item of test data
                 clsStaff TestItem = new clsStaff();
-
-                //variable to store the primary key
                 Int32 PrimaryKey = 0;
-
-                //set its properties
                 TestItem.StaffRole = "Staff Admin";
                 TestItem.StaffName = "Tyson Granger";
                 TestItem.StaffPhoneNo = "07969454221";
                 TestItem.StaffAddress = "64 Zoo Lane";
                 TestItem.StaffDateofHire = DateTime.Now;
                 TestItem.StaffClockIn = true;
-
-                //set ThisAddress to the test data
                 AllStaff.ThisStaff = TestItem;
-
-                //add the record
                 PrimaryKey = AllStaff.Add();
-
-                //set the primary key of the test data
                 TestItem.StaffID = PrimaryKey;
-
-                //find the record
                 AllStaff.ThisStaff.Find(PrimaryKey);
-
-                //test to see that the two values are the same
                 Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+                //cleanup - delete the test record
+                AllStaff.ThisStaff.Find(PrimaryKey);
+                AllStaff.Delete();
             }
         }
         [TestClass]
@@ -135,41 +121,31 @@ namespace Testing4
             [TestMethod]
             public void UpdateMethodOK()
             {
-
-                //create an instance of the class we want to create
                 clsStaffCollection AllStaff = new clsStaffCollection();
-                //create the item of test data
                 clsStaff TestItem = new clsStaff();
-                //variable to store the primary key
                 Int32 PrimaryKey = 0;
-                //set its properties
                 TestItem.StaffClockIn = true;
                 TestItem.StaffRole = "Staff Admin";
                 TestItem.StaffDateofHire = DateTime.Now;
                 TestItem.StaffName = "Tyson Granger";
                 TestItem.StaffPhoneNo = "07969454221";
                 TestItem.StaffAddress = "64 Zoo Lane";
-                //set ThisStaff to the test data
                 AllStaff.ThisStaff = TestItem;
-                //add the record
                 PrimaryKey = AllStaff.Add();
-                //set the primary key of the test data
                 TestItem.StaffID = PrimaryKey;
-                //modify the test record
                 TestItem.StaffClockIn = false;
                 TestItem.StaffRole = "Manager";
                 TestItem.StaffDateofHire = DateTime.Now;
                 TestItem.StaffName = "Another Name";
                 TestItem.StaffPhoneNo = "07000000000";
                 TestItem.StaffAddress = "Another Address";
-                //set the record based on the new test data
                 AllStaff.ThisStaff = TestItem;
-                //update the record
                 AllStaff.Update();
-                //find the record
                 AllStaff.ThisStaff.Find(PrimaryKey);
-                //test to see if ThisStaff matches the test data
                 Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+                //Cleanup Crew - exterminate
+                AllStaff.ThisStaff.Find(PrimaryKey);
+                AllStaff.Delete();
             }
         }
 
@@ -252,7 +228,7 @@ namespace Testing4
                 if (FilteredStaff.Count == 1)
                 {
                     //check that the first record is ID 2893410
-                    if (FilteredStaff.StaffList[0].StaffID != 2893410)
+                    if (FilteredStaff.StaffList[0].StaffID != 105)
                     {
                         OK = false;
                     }
@@ -260,9 +236,11 @@ namespace Testing4
                 else
                 {
                     OK = false;
-                }
-            }
 
+                }
+                //test to see that there are no records
+                Assert.IsTrue(OK);
+            }
         }
     }
 }

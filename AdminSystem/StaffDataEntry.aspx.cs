@@ -17,8 +17,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         StaffID = Convert.ToInt32(Session["StaffID"]);
         if (IsPostBack == false)
         {
-            //if this is the not a new record
-            if (StaffID != -1)
+            //if this is not a new record
+            if (StaffID != -1 && StaffID != 0)
             {
                 //display the current data for the record
                 DisplayStaff();
