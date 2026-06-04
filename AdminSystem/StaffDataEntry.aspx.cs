@@ -77,7 +77,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
                 AuditLog.StaffID = StaffID;
                 AuditLog.Action = "Add";
-                AuditLog.Timestamp = DateTime.Now;
+                AuditLog.Timestamped = DateTime.Now;
                 AuditLog.PerformedBy = "Admin";
                 AuditLog.AuditLogs();
             }
@@ -94,7 +94,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
                 AuditLog.StaffID = StaffID;
                 AuditLog.Action = "Update";
-                AuditLog.Timestamp = DateTime.Now;
+                AuditLog.Timestamped = DateTime.Now;
                 AuditLog.PerformedBy = "Admin";
                 AuditLog.AuditLogs();
             }

@@ -3,28 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Staff List</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="padding: 20px;">
-            <h2>Staff List</h2>
-            <asp:ListBox ID="lstStaffList" runat="server" Height="227px" Width="406px"></asp:ListBox>
-            <br /><br />
-            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
-            &nbsp;
-            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
-            &nbsp;
-            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
-            <br /><br />
-            <asp:Label ID="lblEnteraStaffName" runat="server" Text="Enter a Staff Name"></asp:Label>
-            &nbsp;
-            <asp:TextBox ID="txtFilter" runat="server" Height="22px" Width="128px"></asp:TextBox>
-            <br /><br />
-            <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" Width="79px" />
-            &nbsp;
-            <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" Text="Clear Filter" Width="82px" />
-            <br /><br />
-            <asp:Label ID="lblError" runat="server"></asp:Label>
+        <div class="container mt-4">
+
+            <h2 class="mb-4">Staff List</h2>
+
+            <div class="mb-3">
+                <asp:ListBox ID="lstStaffList" runat="server" Height="227px" Width="406px" CssClass="form-control"></asp:ListBox>
+            </div>
+
+            <div class="mb-3">
+                <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" CssClass="btn btn-primary" />
+                <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" CssClass="btn btn-secondary" />
+                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-danger" />
+            </div>
+
+            <div class="mb-3">
+                <asp:Label ID="lblEnteraStaffName" runat="server" Text="Enter a Staff Name" CssClass="form-label"></asp:Label>
+                <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
+
+            <div class="mb-3">
+                <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" Text="Apply Filter" CssClass="btn btn-primary" />
+                <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" Text="Clear Filter" CssClass="btn btn-secondary" />
+            </div>
+
+            <div class="mb-3">
+                <asp:Label ID="lblError" runat="server" CssClass="text-danger"></asp:Label>
+            </div>
+
         </div>
     </form>
 </body>

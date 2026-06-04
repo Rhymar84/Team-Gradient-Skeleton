@@ -10,7 +10,7 @@ namespace ClassLibrary
     {
         public int StaffID { get; set; }
         public string Action { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime Timestamped { get; set; }
         public string PerformedBy { get; set; }
 
         public void AuditLogs()
@@ -18,7 +18,7 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@StaffID", StaffID);
             DB.AddParameter("@Action", Action);
-            DB.AddParameter("@Timestamp", Timestamp);
+            DB.AddParameter("@Timestamped", Timestamped);
             DB.AddParameter("@PerformedBy", PerformedBy);
             DB.Execute("sproc_tblStaffAuditLogs_Insert");
         }

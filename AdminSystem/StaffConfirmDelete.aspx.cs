@@ -25,7 +25,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         clsStaffAuditLogs AuditLog = new clsStaffAuditLogs();
         AuditLog.StaffID = StaffID;
         AuditLog.Action = "Delete";
-        AuditLog.Timestamp = DateTime.Now;
+        AuditLog.Timestamped = DateTime.Now;
         AuditLog.PerformedBy = "Admin";
         AuditLog.AuditLogs();
         //redirect back to the main page

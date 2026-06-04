@@ -879,16 +879,16 @@ namespace Testing4
                 Assert.AreEqual(aLog.Action, TestData);
             }
             [TestMethod]
-            public void TimestampPropertyOK()
+            public void TimestampedPropertyOK()
             {
                 //create an instance of the class we want to create
                 clsStaffAuditLogs aLog = new clsStaffAuditLogs();
                 //create some test data to assign to the property
                 DateTime TestData = DateTime.Now;
                 //assign the data to the property
-                aLog.Timestamp = TestData;
+                aLog.Timestamped = TestData;
                 //test to see that the two values are the same
-                Assert.AreEqual(aLog.Timestamp, TestData);
+                Assert.AreEqual(aLog.Timestamped, TestData);
             }
             [TestMethod]
             public void PerformedByPropertyOK()
