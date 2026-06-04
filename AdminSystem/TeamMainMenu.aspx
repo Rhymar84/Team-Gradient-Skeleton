@@ -1,20 +1,34 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TeamMainMenu.aspx.cs" Inherits="TeamMainMenu" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Gradient Tech Main Menu</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="container mt-5">
+
+            <div class="text-center mb-5">
+                <h1>Gradient Tech Main Menu</h1>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <asp:Button ID="btnCustomers" runat="server" OnClick="btnCustomers_Click"
+                        Text="Customers" CssClass="btn btn-primary btn-lg me-3" TabIndex="1" />
+                    <asp:Button ID="btnOrders" runat="server" OnClick="btnOrders_Click"
+                        Text="Orders" CssClass="btn btn-primary btn-lg me-3" TabIndex="2" />
+                    <asp:Button ID="btnStaff" runat="server" OnClick="btnStaff_Click"
+                        Text="Staff" CssClass="btn btn-primary btn-lg me-3" TabIndex="3" />
+                    <asp:Button ID="btnStock" runat="server" OnClick="btnStock_Click"
+                        Text="Stock" CssClass="btn btn-primary btn-lg" TabIndex="4" />
+                </div>
+            </div>
+
         </div>
-        <asp:Label ID="lblTitle" runat="server" Font-Size="X-Large" style="z-index: 1; left: 211px; top: 39px; position: absolute" Text="Gradient Tech Main Menu"></asp:Label>
-        <asp:Button ID="btnCustomers" runat="server" OnClick="btnCustomers_Click" style="z-index: 1; left: 46px; top: 87px; position: absolute; right: 1098px; height: 26px;" TabIndex="1" Text="Customers" width="95px" />
-        <asp:Button ID="btnOrders" runat="server" OnClick="btnOrders_Click" style="z-index: 1; left: 198px; top: 87px; position: absolute" TabIndex="2" Text="Orders" width="95px" />
-        <asp:Button ID="btnStaff" runat="server" OnClick="btnStaff_Click" style="z-index: 1; left: 362px; top: 87px; position: absolute" TabIndex="3" Text="Staff" width="95px" />
-        <asp:Button ID="btnStock" runat="server" OnClick="btnStock_Click" style="z-index: 1; left: 517px; top: 87px; position: absolute" TabIndex="4" Text="Stock" width="95px" />
     </form>
 </body>
 </html>
