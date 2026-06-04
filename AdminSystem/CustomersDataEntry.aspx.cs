@@ -129,26 +129,3 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 }
-
-
-/*void DisplayCustomers()
-  {
-      clsCustomerCollection CustomerList = new clsCustomerCollection();
-
-      bool Found = CustomerList.ThisCustomer.Find(CustomerID);
-
-      if (Found)
-      {
-          txtCustomerID.Text = CustomerList.ThisCustomer.CustomerID.ToString();
-          txtCustomerName.Text = CustomerList.ThisCustomer.CustomerName;
-          txtCustomerEmail.Text = CustomerList.ThisCustomer.CustomerEmail;
-          txtCustomerPhoneNo.Text = CustomerList.ThisCustomer.CustomerPhoneNo;
-          txtCustomerAddress.Text = CustomerList.ThisCustomer.CustomerAddress;
-          txtCustomerDateRegistered.Text = CustomerList.ThisCustomer.CustomerDateRegistered.ToString();
-          chkCustomerIsVerified.Checked = CustomerList.ThisCustomer.CustomerIsVerified;
-      }
-      else
-      {
-          lblError.Text = "Customer not found.";
-      }
-  }*/
