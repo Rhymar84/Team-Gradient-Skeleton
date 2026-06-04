@@ -31,4 +31,10 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
         Response.Redirect("StockList.aspx");
     }
+
+    protected void btnExit_Click(object sender, EventArgs e)
+    {
+        // close the application
+        Response.Write("<script>window.close();</script>");
+    }
 }
