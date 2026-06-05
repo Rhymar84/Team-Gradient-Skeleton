@@ -4,25 +4,62 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Orders List</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ListBox ID="lstOrderList" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 330px; width: 323px"></asp:ListBox>
+        <div class="container mt-4">
+            <h2 class="mb-4">Customer List</h2>
+
+            <div class="row mb-3">
+                <div class="col-auto">
+                    <asp:ListBox ID="lstOrderList" runat="server" Height="250px" Width="100%"></asp:ListBox>
+                </div>
+                <div class="col-auto">
+                    <asp:Label ID="lblLogin" runat="server" CssClass="col-form-label"></asp:Label>
+                </div>
+            </div>
+
+            <asp:Label ID="lblError" runat="server" CssClass="text-danger"></asp:Label>
+
+            <div class="row mb-3">
+                <div class="col-auto">
+                    <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" CssClass="btn btn-success" Text="Add" TabIndex="2" />
+                    <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" CssClass="btn btn-warning" Text="Edit" TabIndex="3" />
+                    <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" CssClass="btn btn-danger" TabIndex="3" Text="Delete" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-auto">
+                    <asp:Label ID="lblFilter" runat="server" CssClass="col-form-label fw-semibold" Text="Enter an Address:"></asp:Label>
+                </div>
+                <div class="col-auto">
+                    <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-auto">
+                    <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" CssClass="btn btn-primary" Text="Apply Filter" />
+                    <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" CssClass="btn btn-secondary" Text="Clear Filter" />
+                </div>
+            </div>
         </div>
-        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 25px; top: 372px; position: absolute" Text="Add" TabIndex="2" />
-        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 102px; top: 372px; position: absolute" Text="Edit" TabIndex="3" />
-        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 184px; top: 372px; position: absolute" TabIndex="3" Text="Delete" />
+
+        
         <p>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 25px; top: 510px; position: absolute"></asp:Label>
+        
         </p>
-        <asp:Label ID="lblFilter" runat="server" style="z-index: 1; left: 25px; top: 425px; position: absolute" Text="Enter an Address:"></asp:Label>
-        <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; left: 164px; top: 424px; position: absolute"></asp:TextBox>
-        <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 23px; top: 464px; position: absolute" Text="Apply Filter" />
-        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 150px; top: 464px; position: absolute" Text="Clear Filter" />
+        
+        
+        
         <p>
-            <asp:Label ID="lblLogin" runat="server" style="z-index: 1; left: 350px; top: 18px; position: absolute"></asp:Label>
+            
         </p>
     </form>
 </body>

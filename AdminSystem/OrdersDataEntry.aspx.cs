@@ -38,9 +38,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         String deliveryInstructions = txtDeliveryInstructions.Text;
         String subtotal = txtSubtotal.Text;
 
-        String Error = AnOrder.Valid(dateOrdered, shippingAddress, orderStatus, deliveryInstructions, subtotal);
-        if (Error == "")
+        bool IsEditMode = OrderNo != -1;
+
+        String Error;
+        if (OrderNo != -1)
         {
+            Error = AnOrder.Valid(DateTime.Now.ToShortDateString(), shippingAddress, orderStatus, deliveryInstructions, subtotal); // edit mode, don't check date
+        }
+        else
+        {
+            Error = AnOrder.Valid(dateOrdered, shippingAddress, orderStatus, deliveryInstructions, subtotal); // add mode, date must be today
+        }
+        if (Error == "") {
             //capture data
             AnOrder.OrderNo = OrderNo;
             Console.WriteLine(txtDateOrdered.Text);
