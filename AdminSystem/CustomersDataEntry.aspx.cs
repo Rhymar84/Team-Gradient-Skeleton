@@ -27,6 +27,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
+        //validate data input to ensure accurate data input
+        System.Text.RegularExpressions.Regex nameRegex = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z\s]+$");
+        if (!nameRegex.IsMatch(txtCustomerName.Text))
+        {
+            lblError.Text = "Customer Name must contain letters only.";
+            return;
+        }
+
+        System.Text.RegularExpressions.Regex emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        if (!emailRegex.IsMatch(txtCustomerEmail.Text))
+        {
+            lblError.Text = "Please enter a valid email address (e.g. name@example.com).";
+            return;
+        }
+
+       
+        System.Text.RegularExpressions.Regex phoneRegex = new System.Text.RegularExpressions.Regex(@"^\d+$");
+        if (!phoneRegex.IsMatch(txtCustomerPhoneNo.Text))
+        {
+            lblError.Text = "Phone number must contain numbers only.";
+            return;
+        }
+
+       
+        DateTime dateRegistered;
+        if (!DateTime.TryParseExact(txtCustomerDateRegistered.Text, "dd/MM/yyyy",
+            System.Globalization.CultureInfo.InvariantCulture,
+            System.Globalization.DateTimeStyles.None, out dateRegistered))
+        {
+            lblError.Text = "Date Registered must be in the format dd/MM/yyyy.";
+            return;
+        }
+
+        // clear any previous error
+        lblError.Text = "";
+
         //create a new instance of the clsCustomer
         clsCustomer ACustomer = new clsCustomer();
         //capture data
@@ -128,4 +164,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        // redirect back to the customer list
+        Response.Redirect("CustomersList.aspx");
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        // clear all fields
+        txtCustomerID.Text = "";
+        txtCustomerName.Text = "";
+        txtCustomerEmail.Text = "";
+        txtCustomerPhoneNo.Text = "";
+        txtCustomerAddress.Text = "";
+        txtCustomerDateRegistered.Text = "";
+        chkCustomerIsVerified.Checked = false;
+        lblError.Text = "";
+    }
+
+   
 }
