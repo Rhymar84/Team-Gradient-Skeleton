@@ -14,8 +14,9 @@
             <h2 class="mb-4">Customer List</h2>
 
             <div class="mb-3">
-                <asp:Button ID="btnMainMenu" runat="server" Text="← Main Menu"
-                    OnClick="btnMainMenu_Click" CssClass="btn btn-outline-secondary btn-sm" />
+                <asp:Button ID="btnMainMenu" runat="server" Text="← Main Menu" CssClass="btn btn-outline-secondary btn-sm" 
+                 OnClientClick="return confirm('Are you sure you want to go back to main menu? Any nsaved changes will be lost.');"
+                  Onclick="btnMainMenu_Click"/>
             </div>
 
             <div class="mb-3">
