@@ -4,14 +4,33 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Orders Confirm Delete</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="container mt-4">
+            <h2 class="mb-4">Confirm Delete</h2>
+
+            <div class="row mb-4 align-items-center">
+                <div class="col-auto">
+                    <div class="alert alert-warning">
+                        Are you sure you want to delete this record?
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4 align-items-center">
+                <div class="col-auto">
+                    <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" CssClass="btn btn-primary" TabIndex="1" Text="Yes" />
+                    <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" CssClass="btn btn-secondary" TabIndex="2" Text="No" />
+                </div>
+            </div>
         </div>
-        Are you sure you want to delete this record?<asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" style="z-index: 1; left: 36px; top: 66px; position: absolute; width: 68px; right: 1115px" TabIndex="1" Text="Yes" />
-        <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" style="z-index: 1; left: 164px; top: 66px; position: absolute" TabIndex="2" Text="No" width="68px" />
+        
     </form>
 </body>
 </html>
