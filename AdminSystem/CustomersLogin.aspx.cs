@@ -44,6 +44,7 @@ public partial class CustomersLogin : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-
+        // redirect back to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
