@@ -4,49 +4,87 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Orders Data Entry</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
-    &nbsp;<form id="form1" runat="server">
-        <div>
-            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; top: 33px; position: absolute; left: 379px" TabIndex="10" Text="Find" />
+    <form id="form1" runat="server">
+        <div class="container mt-4">
+            <h2 class="mb-4">Orders Data Entry</h2>
+
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblOrderNo" runat="server" Text="Order No." CssClass="col-form-label fw-semibold" />
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtOrderNo" runat="server" CssClass="form-control" />
+                </div>
+                <div class="col-2">
+                    <asp:Button ID="btnFind" runat="server" Text="Find" OnClick="btnFind_Click" CssClass="btn btn-primary" />
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblDateOrdered" runat="server" CssClass="col-form-label fw-semibold" Text="Date Ordered"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtDateOrdered" runat="server" CssClass="form-control" TabIndex="2" TextMode="Date"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblShippingAddress" runat="server" CssClass="col-form-label fw-semibold" Text="Shipping Address"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtShippingAddress" runat="server" CssClass="form-control" TabIndex="3"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblOrderStatus" runat="server" CssClass="col-form-label fw-semibold" Text="Order Status"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtOrderStatus" runat="server" CssClass="form-control" TabIndex="4"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblDeliveryInstructions" runat="server" CssClass="col-form-label fw-semibold" Text="Delivery Instructions"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtDeliveryInstructions" runat="server" CssClass="form-control" TabIndex="5"></asp:TextBox>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblExpressShipping" runat="server" CssClass="col-form-label fw-semibold" Text="Express Shipping"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:CheckBox ID="chkExpressShipping" runat="server" CssClass="form-check-input" TabIndex="6" />
+                </div>
+            </div>
+            <div class="row mb-3 align-items-center">
+                <div class="col-2">
+                    <asp:Label ID="lblSubTotal" runat="server" CssClass="col-form-label fw-semibold" Text="Subtotal"></asp:Label>
+                </div>
+                <div class="col-2">
+                    <asp:TextBox ID="txtSubtotal" runat="server" CssClass="form-control" TabIndex="7"></asp:TextBox>
+                </div>
+            </div>
+
+            <asp:Label ID="lblError" runat="server" CssClass="text-danger"></asp:Label>
+
+            <div class="row">
+                <div class="col-3">
+                    <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" CssClass="btn btn-primary" TabIndex="8" Text="OK" />
+                    <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-danger" TabIndex="9" Text="Cancel" OnClick="btnCancel_Click" />
+                </div>
+            </div>
+            
         </div>
-        <asp:Label ID="lblOrderNo" runat="server" style="z-index: 1; left: 11px; top: 36px; position: absolute; " Text="Order No." width="123px"></asp:Label>
-        <asp:TextBox ID="txtOrderNo" runat="server" style="z-index: 1; left: 163px; top: 35px; position: absolute" TabIndex="1"></asp:TextBox>
-        <p style="height: 19px">
-            &nbsp;</p>
-        <p style="height: 19px">
-            <asp:Label ID="lblDateOrdered" runat="server" style="z-index: 1; left: 11px; top: 75px; position: absolute; height: 18px; width: 123px" Text="Date Ordered"></asp:Label>
-        </p>
-        <asp:Label ID="lblOrderStatus" runat="server" style="z-index: 1; left: 11px; top: 148px; position: absolute" Text="Order Status" width="123px"></asp:Label>
-        <p>
-            &nbsp;</p>
-        <p>
-            <asp:TextBox ID="txtDeliveryInstructions" runat="server" style="z-index: 1; left: 163px; top: 182px; position: absolute" TabIndex="5"></asp:TextBox>
-        </p>
-        <p>
-            &nbsp;</p>
-        <p>
-            <asp:Label ID="lblDeliveryInstructions" runat="server" style="z-index: 1; left: 11px; top: 183px; position: absolute" Text="Delivery Instructions"></asp:Label>
-        </p>
-        <p>
-            <asp:Label ID="lblSubTotal" runat="server" style="z-index: 1; left: 11px; top: 262px; position: absolute" Text="Subtotal" width="123px"></asp:Label>
-        </p>
-        <p>
-            <asp:CheckBox ID="chkExpressShipping" runat="server" style="z-index: 1; left: 165px; top: 223px; position: absolute" TabIndex="6" Text="Express Shipping" />
-            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 24px; top: 319px; position: absolute"></asp:Label>
-        </p>
-        <p>
-            <asp:Label ID="lblShippingAddress" runat="server" style="z-index: 1; left: 11px; top: 112px; position: absolute" Text="Shipping Address" width="123px"></asp:Label>
-            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 39px; top: 355px; position: absolute" TabIndex="8" Text="OK" />
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 117px; top: 355px; position: absolute" TabIndex="9" Text="Cancel" OnClick="btnCancel_Click" />
-        </p>
-        <asp:TextBox ID="txtDateOrdered" runat="server" style="z-index: 1; left: 163px; top: 73px; position: absolute" TabIndex="2" TextMode="Date"></asp:TextBox>
-        <p>
-            <asp:TextBox ID="txtShippingAddress" runat="server" style="z-index: 1; left: 163px; top: 111px; position: absolute" TabIndex="3"></asp:TextBox>
-        </p>
-        <asp:TextBox ID="txtOrderStatus" runat="server" style="z-index: 1; left: 163px; top: 147px; position: absolute" TabIndex="4"></asp:TextBox>
-        <asp:TextBox ID="txtSubtotal" runat="server" style="z-index: 1; left: 163px; top: 261px; position: absolute" TabIndex="7"></asp:TextBox>
     </form>
 </body>
 </html>
