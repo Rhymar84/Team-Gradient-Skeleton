@@ -7,16 +7,16 @@ namespace Testing2
     [TestClass]
     public class tstStock
     {
-        // ---- Instance test ----
-        [TestMethod]
+        // ---- Instance test ----
+        [TestMethod]
         public void InstanceOK()
         {
             clsStock anStock = new clsStock();
             Assert.IsNotNull(anStock);
         }
 
-        // ---- Property tests (get/set) ----
-        [TestMethod]
+        // ---- Property tests (get/set) ----
+        [TestMethod]
         public void ItemNoPropertyOK()
         {
             clsStock anStock = new clsStock();
@@ -70,27 +70,27 @@ namespace Testing2
             Assert.AreEqual(anStock.LastDateRestocked, TestData);
         }
 
-        // ---- Find method test (basic) ----
-        [TestMethod]
+        // ---- Find method test (basic) ----
+        [TestMethod]
         public void FindMethodOK()
         {
             clsStock anStock = new clsStock();
             Boolean Found = false;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             Assert.IsTrue(Found);
         }
 
-        // ---- "Found" tests (each attribute gets set correctly by Find) ----
-        [TestMethod]
+        // ---- "Found" tests (each attribute gets set correctly by Find) ----
+        [TestMethod]
         public void TestItemNoFound()
         {
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
-            if (anStock.ItemNo != 21)
+            if (anStock.ItemNo != 1)  // Changed from 21 to 1
             {
                 OK = false;
             }
@@ -103,7 +103,7 @@ namespace Testing2
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             if (anStock.ModelName != "Test Model")
             {
@@ -118,7 +118,7 @@ namespace Testing2
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             if (anStock.Price != "19.99")
             {
@@ -133,7 +133,7 @@ namespace Testing2
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             if (anStock.Quantity != 50)
             {
@@ -148,7 +148,7 @@ namespace Testing2
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             if (anStock.InStock != true)
             {
@@ -163,7 +163,7 @@ namespace Testing2
             clsStock anStock = new clsStock();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 ItemNo = 21;
+            Int32 ItemNo = 1;  // Changed from 21 to 1
             Found = anStock.Find(ItemNo);
             if (anStock.LastDateRestocked != new DateTime(2024, 1, 15))
             {
