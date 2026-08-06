@@ -171,5 +171,114 @@ namespace Testing2
             }
             Assert.IsTrue(OK);
         }
+
+        [TestClass]
+        public class ValidationTests
+        {
+            // Good test data
+            string ModelName = "Test Model";
+            string Price = "19.99";
+            string Quantity = "50";
+            string LastDateRestocked = DateTime.Now.ToShortDateString();
+
+            [TestMethod]
+            public void ValidMethodOK()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ModelNameMinLessOne()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string ModelName = ""; // should fail
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ModelNameMin()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string ModelName = "a"; // should pass
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ModelNameMax()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string ModelName = "".PadRight(50, 'a'); // should pass
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void ModelNameMaxPlusOne()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string ModelName = "".PadRight(51, 'a'); // should fail
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void PriceInvalidFormat()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string Price = "abc"; // should fail
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void PriceMin()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string Price = "0.01"; // should pass
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void QuantityNegative()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string Quantity = "-1"; // should fail
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreNotEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void QuantityMin()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string Quantity = "0"; // should pass
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreEqual(Error, "");
+            }
+
+            [TestMethod]
+            public void LastDateRestockedInvalidDate()
+            {
+                clsStock stock = new clsStock();
+                string Error = "";
+                string LastDateRestocked = "not a date"; // should fail
+                Error = stock.Valid(ModelName, Price, Quantity, LastDateRestocked);
+                Assert.AreNotEqual(Error, "");
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@
         <asp:Label ID="lbError" runat="server" ForeColor="Red"></asp:Label>
 
         <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="False" 
+            DataKeyNames="ItemNo"
             OnRowCommand="gvStock_RowCommand" CellPadding="4" ForeColor="#333333" GridLines="None">
             <Columns>
                 <asp:BoundField DataField="ItemNo" HeaderText="Item No" />

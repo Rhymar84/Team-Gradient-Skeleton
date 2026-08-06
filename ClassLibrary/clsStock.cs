@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data.SqlClient;
 
 namespace ClassLibrary
@@ -55,7 +54,7 @@ namespace ClassLibrary
         public bool Find(int itemNo)
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ItemNo", itemNo);  // Fixed: using parameter, not property
+            DB.AddParameter("@ItemNo", itemNo);
             DB.Execute("sproc_tblStock_FilterByItemNo");
 
             if (DB.Count == 1)
@@ -98,8 +97,7 @@ namespace ClassLibrary
                 DB.AddParameter("@LastDateRestocked", LastDateRestocked);
                 DB.Execute("sproc_tblStock_Insert");
 
-                // Get the new ID (assuming stored procedure returns it)
-                if (DB.Count > 0)
+                if (DB.DataTable.Rows.Count > 0)
                 {
                     mItemNo = Convert.ToInt32(DB.DataTable.Rows[0]["ItemNo"]);
                 }
@@ -116,6 +114,38 @@ namespace ClassLibrary
             }
 
             return "";
+        }
+
+        // VALID method – for testing validation logic
+        public string Valid(string modelName, string price, string quantity, string lastDateRestocked)
+        {
+            string error = "";
+
+            // ModelName validation
+            if (string.IsNullOrWhiteSpace(modelName))
+                error += "Model Name cannot be empty. ";
+            else if (modelName.Length > 50)
+                error += "Model Name must be 50 characters or less. ";
+
+            // Price validation
+            if (string.IsNullOrWhiteSpace(price))
+                error += "Price cannot be empty. ";
+            else if (!decimal.TryParse(price, out decimal priceValue))
+                error += "Price must be a valid number. ";
+
+            // Quantity validation
+            if (string.IsNullOrWhiteSpace(quantity))
+                error += "Quantity cannot be empty. ";
+            else if (!int.TryParse(quantity, out int qty) || qty < 0)
+                error += "Quantity must be 0 or greater. ";
+
+            // Date validation
+            if (string.IsNullOrWhiteSpace(lastDateRestocked))
+                error += "Date cannot be empty. ";
+            else if (!DateTime.TryParse(lastDateRestocked, out DateTime date))
+                error += "Date must be a valid date. ";
+
+            return error;
         }
     }
 }

@@ -1,33 +1,19 @@
 ﻿using ClassLibrary;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class _1_List : System.Web.UI.Page
 {
-    private clsDataConnection DB = new clsDataConnection();
+    clsStockCollection stocks = new clsStockCollection();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            LoadStockList();
-        }
-    }
-
-    private void LoadStockList()
-    {
-        try
-        {
-            DB.Execute("sproc_tblStock_ListAll");
-            gvStock.DataSource = DB.DataTable;
+            stocks.ListAll();
+            gvStock.DataSource = stocks.StockList;
             gvStock.DataBind();
-        }
-        catch (Exception ex)
-        {
-            lbError.Text = "Error loading stock: " + ex.Message;
         }
     }
 

@@ -10,7 +10,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            // Check if editing an existing record
             if (Request.QueryString["ItemNo"] != null)
             {
                 _itemNo = Convert.ToInt32(Request.QueryString["ItemNo"]);
@@ -39,7 +38,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtQuantity.Text = stock.Quantity.ToString();
             chkInStock.Checked = stock.InStock;
             txtLastDateRestocked.Text = stock.LastDateRestocked.ToString("yyyy-MM-dd");
-
             _itemNo = itemNo;
             ViewState["ItemNo"] = itemNo;
         }
@@ -51,33 +49,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        try
+        if (Page.IsValid)
         {
-            clsStock stock = new clsStock();
-
-            if (_itemNo > 0)
-                stock.ItemNo = _itemNo;
-
-            stock.ModelName = txtModelName.Text.Trim();
-            stock.Price = txtPrice.Text.Trim();
-            stock.Quantity = int.Parse(txtQuantity.Text.Trim());
-            stock.InStock = chkInStock.Checked;
-            stock.LastDateRestocked = DateTime.Parse(txtLastDateRestocked.Text);
-
-            string result = stock.Save();
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                Response.Redirect("StockViewer.aspx?ItemNo=" + stock.ItemNo);
+                clsStock stock = new clsStock();
+
+                if (_itemNo > 0)
+                    stock.ItemNo = _itemNo;
+
+                stock.ModelName = txtModelName.Text.Trim();
+                stock.Price = txtPrice.Text.Trim();
+                stock.Quantity = int.Parse(txtQuantity.Text.Trim());
+                stock.InStock = chkInStock.Checked;
+                stock.LastDateRestocked = DateTime.Parse(txtLastDateRestocked.Text);
+
+                string result = stock.Save();
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    Response.Redirect("StockViewer.aspx?ItemNo=" + stock.ItemNo);
+                }
+                else
+                {
+                    lbError.Text = result;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lbError.Text = result;
+                lbError.Text = "Error: " + ex.Message;
             }
-        }
-        catch (Exception ex)
-        {
-            lbError.Text = "Error: " + ex.Message;
         }
     }
 
